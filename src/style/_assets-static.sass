@@ -1,0 +1,268 @@
+/*===============================================================
+ *Imports & includes
+ *===============================================================
+@import compass/reset
+@import h5bp
+
++h5bp-display
++h5bp-chromeframe
++h5bp-media
++h5bp-base
++h5bp-typography
++h5bp-figures
++h5bp-forms
++h5bp-embeds
++h5bp-tables
++h5bp-helpers
+
+@import "compass"
+
+/*===============================================================
+ *Extends
+ *===============================================================
+.input-reset
+  background-color: transparent
+  border: none
+  &:hover,&:focus
+    outline: none
+
+.block-reset
+  margin: 0
+  padding: 0
+  border: none
+
+.text-hide
+  font: 0/0 serif
+  text-shadow: none
+  color: transparent
+
+.dl-inline
+  +pie-clearfix
+  & > dt
+    float: left
+    margin-right: 5px
+
+.no-focusOutline
+  &:focus
+    outline: none
+
+
+/*===============================================================
+ *Mixins
+ *===============================================================
+=pseudo-block($width:0, $height:$width)
+  content: ''
+  display: block
+  position: absolute
+  width: $width
+  height: $height
+
+=pseudo-inline($align: auto)
+  content: ''
+  display: inline-block
+  vertical-align: $align
+
+=hLine($align: auto)
+  & > *
+    display: inline-block
+    vertical-align: $align
+
+=jLine($align: auto, $unitFontSize: 13px, $unitLineHeight: 1.4)
+  +hLine($align)
+  text-align: justify
+  line-height: 0
+  font-size: 1px
+  text-justify: newspaper
+  zoom: 1
+  text-align-last: justify
+  &:after
+    +pseudo-inline
+    height: 0
+    overflow: hidden
+    visibility: hidden
+    width: 100%
+  & > *
+    text-align: left
+    font-size: $unitFontSize
+    line-height: $unitLineHeight
+
+=jLine-simple($float-1: left, $float-2: right)
+  +pie-clearfix
+  & > *:first-child
+    float: $float-1
+  & > *:last-child
+    float: $float-2
+
+=container($min: $baseMinWidth, $max: $baseMaxWidth)
+  min-width: $min
+  max-width: $max
+  margin-left: auto
+  margin-right: auto
+
+=placeholder-color($color)
+  \::-webkit-input-placeholder
+    color: $color
+  \:-moz-placeholder
+    color: $color
+  \::-moz-placeholder
+    color: $color
+  \:-ms-input-placeholder
+    color: $color
+
+=centering-absolute($width, $height)
+  width: $width
+  height: $height
+  position: absolute
+  left: 50%
+  top: 50%
+  margin-top: -$height / 2
+  margin-left: -$width / 2
+
+=vendorize($prop, $val)
+  -webkit-#{$prop}: $val
+  -moz-#{$prop}: $val
+  -ms-#{$prop}: $val
+  #{$prop}: $val
+
+//Link Mixin Colors
+=singleLink($lmc-1: $linkColor)
+  +link-colors($lmc-1, $lmc-1, $lmc-1, $lmc-1, $lmc-1)
+
+=simpleLink($lmc-1: $linkColor, $lmc-2: $hoverLinkColor)
+  +link-colors($lmc-1, $lmc-2, $lmc-1, $lmc-1, $lmc-2)
+
+=singleLink-custom($lmc-1: $linkColor, $decorationType: dotted)
+  +singleLink($lmc-1)
+  text-decoration: none
+  border-bottom: 1px $decorationType $lmc-1
+
+=simpleLink-custom($lmc-1: $linkColor, $lmc-2: $hoverLinkColor, $decorationType: dotted)
+  +simpleLink($lmc-1, $lmc-2)
+  text-decoration: none
+  border-bottom: 1px $decorationType $lmc-1
+  &:hover,&:focus
+    border-bottom-color: $lmc-2
+
+//for responsive
+=respond-to($media)
+  @if $media == ie10
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+      @content
+  @else if $media == iphone
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px)
+      @content
+  @else if $media == ipad
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+      @content
+
+=breakpoint($val)
+  @media only screen and (max-width: $val)
+    @content
+
+=fluid-width($width, $parentWidth)
+  width: $width / $parentWidth * 100%
+
+=fluid-prop($prop, $width, $parentWidth)
+  #{$prop}: $width / $parentWidth * 100%
+
+/*===============================================================
+ *Layout helpers
+ *===============================================================
+.l-hLine
+  +hLine
+
+.l-hLine--bottom
+  +hLine(bottom)
+
+.l-hLine--middle
+  +hLine(middle)
+
+.l-hLine--top
+  +hLine(top)
+
+.l-jLine
+  +jLine
+
+.l-jLine--bottom
+  +jLine(bottom)
+
+.l-jLine--middle
+  +jLine(middle)
+
+.l-jLine--top
+  +jLine(top)
+
+.l-jLine--simple
+  +jLine-simple
+
+.l-flexbox
+  display: -webkit-box
+  display: -moz-box
+  display: -ms-flexbox
+  display: -webkit-flex
+  display: flex
+
+
+/*===============================================================
+ *Inputs
+ *===============================================================
+input[type="search"]
+  -webkit-appearance: textfield
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button
+  -webkit-appearance: none
+
+input[type="file"],
+input[type="image"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="radio"],
+input[type="checkbox"]
+  width: auto
+
+select,
+input[type="file"]
+  *margin-top: 4px
+  /* In IE7, the height of the select element cannot be changed by height, only font-size
+
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus
+  outline: thin dotted #333
+  outline: 5px auto -webkit-focus-ring-color
+  outline-offset: -2px
+
+/*===============================================================
+ *Typography
+ *===============================================================
+html, button, input, select, textarea
+  font-family: $baseFamily
+  color: $baseFontColor
+
+html
+  height: 100%
+
+body
+  height: 100%
+  font-size: $baseFontSize
+  line-height: $baseLineHeight
+
+h1,h2,h3,h4,h5,h6,p,ul,ol
+  margin: 0
+  padding: 0
+  border: 0
+  font: inherit
+  font-size: 100%
+  vertical-align: baseline
+
+em
+  font-style: italic
+
+/*===============================================================
+ *Border-box model
+ *===============================================================
+*,*:before,*:after,input[type=search]
+  +box-sizing($boxModel)

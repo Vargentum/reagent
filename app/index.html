@@ -2,6 +2,7 @@
 <!--[if IE 9]> <html class="ie ie9" lang="en"> <![endif]-->
 <html class="no-js">
 
+<!--HEAD  start-->
 <head>
   <meta charset="utf-8">
   <title></title>
@@ -13,49 +14,60 @@
   <!--allows ie8 users to use Google Chrome Frame plugin in our browser-->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!--Analytics include-->	
+
   <link href="//www.google-analytics.com" rel="dns-prefetch">
   <link href="//ajax.googleapis.com" rel="dns-prefetch">
   <!--CSS include-->
   <link href="assets/css/core.css" rel="stylesheet">
-  <link href="assets/css/write-your-code-here.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+
+  <!--modernizr-2.6.2-->
+  <script src="assets/js/vendor/modernizr.min.js"></script>
 </head>
+<!--HEAD end-->
+
 
 <body itemscope itemtype='http://schema.org/WebPage'>
 
-<!--HEADER start-->
-<header class="l-header">
-  <!--logo-->
-  <a class="logo" href="/" itemprop='url'>
-    <img src="assets/img/logo.png" alt="" itemprop='logo' itemscope itemtype='http://schema.org/ImageObject'>
-    <span class="logo__hidden" itemprop="name"></span>
-  </a>
-  <!--navigation-->
-  <nav class="nav" role="navigation">
-    <a href="#" class="nav__link is-active"></a>
-    <a href="#" class="nav__link"></a>
-  </nav>
-</header>
-<!--HEADER end-->
+<!--LAYOUT start (all without footer)-->
+<div class="l-layout stickyFooter_helper-1">
 
-<!--MAIN start-->
-<main class="l-main">
+  <!--HEADER start-->
+  <header class="l-header">
+    <!--logo-->
+    <a class="logo" href="/" itemprop='url'>
+      <img src="assets/img/logo.png" alt="" itemprop='logo' itemscope itemtype='http://schema.org/ImageObject'>
+      <span class="logo__hidden" itemprop="name"></span>
+    </a>
+    <!--navigation-->
+    <nav class="nav" role="navigation">
+      <a href="#" class="nav__link is-active"></a>
+      <a href="#" class="nav__link"></a>
+    </nav>
+  </header>
+  <!--HEADER end-->
 
-  <!--main column-->
-  <div class="l-main__primaryColumn">
+  <!--MAIN start-->
+  <div class="l-main" role="main">
+    <!--left sidebar-->
+    <aside class="l-main__column-1"></aside>
+    <!--end left sidebar-->
 
-    <!--template: main page-->
-    <h1>Hello world</h1>
+    <!--center column-->
+    <main class="l-main__column-2">
+      <h1>Hello world</h1>
+    </main>
+    <!--end center column-->
 
+    <!--right sidebar-->
+    <aside class="l-main__column-3"></aside>
+    <!--end right sidebar-->
   </div>
-  <!--end center column-->
+  <!--MAIN end-->
 
-  <!--sidebar-->
-  <aside class="l-main__secondaryColumn"></aside>
-  <!--sidebar-->
-
-</main>
-<!--MAIN end-->
+  <div class="stickyFooter_helper-2"></div>
+</div>
+<!--LAYOUT end -->
 
 <!--start FOOTER-->
 <footer class="l-footer">
@@ -67,11 +79,12 @@
 
 
 <!--SCRIPTS  start-->
+<!--jquery 1.10.2-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>');</script>
 
-<!--<script src="assets/js/plugins.js"></script>-->
-<script src="assets/js/plugins.min.js"></script>
-<script src="assets/js/core.js"></script>
+<!--developer scripts-->
+<script src="assets/js/scripts.min.js"></script>
 
 <script>
   (function(f,i,r,e,s,h,l){i['GoogleAnalyticsObject']=s;f[s]=f[s]||function(){

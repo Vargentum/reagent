@@ -1,23 +1,24 @@
-Reagent (boilerplate system)
-=============
+﻿#Reagent: front-end workflow system.
 
+##Based on Fireshell framework.
 
-## From the beginning
+#Features
 
-Install Node.js, NPM.
+##Organic stylesheet dividing system.
+Instead of SMACSS, I use static-dynamic approach:
+- file for variables;
+- one file for don't changing code, like libraries of mixins or extends;
+- another file for code which changed from project to project, like dependencies or typography;
+- core file for all other styles.
 
-Install `grunt-cli` globally: `npm install grunt-cli -g`
+##Partials support
+You can include partials to you core html file.
 
-Run `npm install` to install local dependencies.
+##Compass support
+Original Fireshell framework supports only sass/scss. I've added compass framework support.
 
+#Important
+I'm developing this system only for my own needs.
 
-## Build
-
-Run `grunt` to build the project. Distribution files are
-located in `app` folder. `src` folder contains soruce files.
-
-
-## Develop
-
-Run `grunt server` to fire development server. It watches for changes
-in files in `src` folder and runs compilation.
+#Credits
+Fireshell and its authors, Grunt, Sass, Compass, Node.js

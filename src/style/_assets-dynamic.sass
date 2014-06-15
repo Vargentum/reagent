@@ -1,0 +1,88 @@
+/*===============================================================
+ *Imports & includes
+ *===============================================================
+@import compass/layout/sticky-footer
+@import susy
+
++sticky-footer($footerHeight, ".stickyFooter_helper-1", ".stickyFooter_helper-2", ".l-footer")
+
+/*===============================================================
+ *Fonts
+ *===============================================================
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic)
+
+@each $font-face in testFontName
+  @font-face
+    font-family: $font-face
+    font-style: normal
+    font-weight: normal
+    src: url("../fonts/#{$font-face}.eot")
+    src: url("../fonts/#{$font-face}.eot?#iefix") format("embedded-opentype"), url("../fonts/#{$font-face}.woff") format("woff"), url("../fonts/#{$font-face}.ttf") format("truetype")
+
+/*===============================================================
+ *Inputs
+ *===============================================================
+@each $type in text, password, datetime, datetime-local, date, month, time, week, number, email, url, search, tel
+  textarea, input[type="#{$type}"]
+    //  styles for inputs
+
+textarea
+  overflow: auto
+  vertical-align: top
+
+button
+  border: none
+  background-color: transparent
+
+input[type="radio"],
+input[type="checkbox"]
+  margin: 4px 0 0
+  margin-top: 1px \9
+  *margin-top: 0
+  line-height: normal
+  cursor: pointer
+
+/*===============================================================
+ *Typography
+ *===============================================================
+a
+  +link-colors($linkColor, $hoverLinkColor, $activeLinkColor, $visitedLinkColor, $focusedLinkColor)
+  +single-transition($duration: 0.5s)
+  &:focus
+    outline: thin dotted
+  &:active,&:hover
+    outline: none
+  text-decoration: underline
+  //text-decoration: none
+  &:hover,&:focus
+    text-decoration: none
+
+.wysiwyg
+  p
+    margin-bottom: $paragraphSpace
+  ul
+    list-style-type: disc
+    margin-bottom: $paragraphSpace
+    padding-left: $paragraphSpace
+    li
+      position: relative
+      &:before
+        content: '-'
+        position: absolute
+        right: 100%
+  ol
+    margin-bottom: $paragraphSpace
+    padding-left: $paragraphSpace
+    list-style-type: decimal
+  h1
+    font-size: 2.2em
+  h2
+    font-size: 1.7em
+  h3
+    font-size: 1em
+  h4
+    font-size: 0.9em
+  h5
+    font-size: 0.8em
+  h6
+    font-size: 0.7em

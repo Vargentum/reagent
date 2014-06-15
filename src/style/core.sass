@@ -1,0 +1,118 @@
+@charset "utf-8"
+
+@import variables
+@import assets-static
+@import assets-dynamic
+
+//@import "icon/*.png";
+//@include all-icon-sprites;
+
+
+body
+  background-color: $bodyColor
+
+.l-layout
+  +container()
+//  +grid-background()
+  +susy-grid-background()
+
+
+
+
+
+/*===============================================================
+ *$UI elements
+ *===============================================================
+//.ui-
+
+
+
+
+
+/*===============================================================
+ *HEADER
+ *===============================================================
+.l-header
+  position: relative
+
+.logo
+  text-decoration: none
+
+.logo__hidden
+  @extend .text-hide
+  position: absolute
+
+//.search
+//.search__field
+//.search__submit
+
+//.nav
+//.nav__link
+
+
+
+
+
+/*===============================================================
+ *$CONTENT
+ *===============================================================
+//.l-main
+//.l-main__column-1
+//.l-main__column-2
+//.l-main__column-3
+
+.crumbs
+  +hLine
+//.crumbs__link
+
+
+
+
+
+/*===============================================================
+ *$FOOTER
+ *===============================================================
+.l-footer
+  position: relative
+  //+container;
+
+
+
+
+/*===============================================================
+ *$PAGE TEMPLATES
+ *===============================================================
+
+
+
+
+/*===============================================================
+ *$PLUGIN OVERRIDING
+ *===============================================================
+
+
+
+
+
+/*===============================================================
+ *$HACKS
+ *===============================================================
+@-moz-document url-prefix()
+  //firefox
+
+@media screen and (-webkit-min-device-pixel-ratio: 0)
+  /* Safari and Chrome
+  //.selector
+  /* Safari only override
+  //\::i-block-chrome,.selector
+
+
+//debug grid
+//* { outline: 2px dotted red; }
+//* * { outline: 2px dotted green; }
+//* * * { outline: 2px dotted orange; }
+//* * * * { outline: 2px dotted blue; }
+//* * * * * { outline: 1px solid red; }
+//* * * * * * { outline: 1px solid green; }
+//* * * * * * * { outline: 1px solid orange; }
+//* * * * * * * * { outline: 1px solid blue; }
