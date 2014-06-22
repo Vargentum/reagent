@@ -214,4 +214,5 @@ module.exports = (grunt) ->
     "open"
     "watch"
   ]
+  grunt.registerTask "s",["server"]
   return
