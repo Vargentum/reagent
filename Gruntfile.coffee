@@ -15,7 +15,7 @@ module.exports = (grunt) ->
 
     connect:
       options:
-        port: 9000
+        port: 9999
         hostname: "127.0.0.1"
 
       livereload:
@@ -29,14 +29,12 @@ module.exports = (grunt) ->
    
     clean: [
       "./temp"
-      "./app/assets/css/"
-      "./app/assets/js/"
     ]
 
 
     concat:
       plugins:
-        src: ["./src/base/plugins/{,*}*.js"]
+        src: ["./src/plugins/{,*}*.js"]
         dest: "./app/assets/js/<%= pkg.name %>-plugins.js"
 
       components:
@@ -45,8 +43,7 @@ module.exports = (grunt) ->
 
       styles:
         src: [
-          './src/styles/default/core.styl'
-          './src/styles/universal/{,*/}*.styl'
+          './src/base-styles/core.styl'
           "./src/components/{,*/}*.styl"
         ]
         dest: "./temp/styles.styl"
@@ -79,7 +76,7 @@ module.exports = (grunt) ->
 
         options:
           paths: [
-            "./src/styles/default/"
+            "./src/base-styles/"
             "./app/assets/css/"
             "./app/assets/fonts/"
             "./app/assets/img/"
@@ -111,7 +108,7 @@ module.exports = (grunt) ->
 
     jade:
       compile:
-        src: ['./src/{,**/}*.jade']
+        src: ['./src/components/*.jade']  #core files without components
         dest: './app/index.html'
         options:
           pretty: on
@@ -119,21 +116,21 @@ module.exports = (grunt) ->
 
     webfont:
       compile:
-        src: ['./src/assets/icons/{,**/}*.svg']
+        src: ['./src/icons/{,**/}*.svg']
         dest: './app/assets/font'
-        destCss: './src/styles/default/icons-map.styl'
+        destCss: './src/base-styles/icons-map'
         options:
-          engine: 'node'
           stylesheet: 'styl'
           relativeFontPath: '../font'
+          types: "eot,woff"
 
 
 
     sprite:
-      images:
-        src: ['./src/assets/sprites/{,**/}*.png']
+      compile:
+        src: ['./src/sprites/{,**/}*.png']
         destImg: './app/assets/img/<%= pkg.name %>-sprite.png'
-        destCSS: './src/styles/default/sprite-map.styl'
+        destCSS: './src/base-styles/sprite-map.styl'
         imgPath: '../img/<%= pkg.name %>-sprite.png'
         algorithm: 'binary-tree'
         padding: 2
@@ -146,7 +143,7 @@ module.exports = (grunt) ->
 
     watch:
       stylus:
-        files: "<%= concat.styles.src %>"
+        files: "./src/{,**/}*.styl"
         tasks: ["process-styles"]
 
       plugins:
@@ -158,22 +155,22 @@ module.exports = (grunt) ->
         tasks: ["process-components"]
 
       markup:
-        files: "<%= jade.compile.src %>"
+        files: "./src/{,**/}*.jade"
         tasks: ["process-markup"]
 
       sprites:
-        files: "<%= sprite.images.src %>"
+        files: "<%= sprite.compile.src %>"
         tasks: ["process-sprites"]
 
       icons:
-        files: "<%= webfont.images.src %>"
-        tasks: ["process-icons"]
+        files: "<%= webfont.compile.src %>"
+        tasks: ["process-graphics"]
 
       livereload:
         options:
           livereload: LIVERELOAD_PORT
 
-        files: ["<%= project.app %>/**"]
+        files: ["src/**"]
 
   grunt.registerTask "process-html", [
     "includes"
@@ -216,4 +213,5 @@ module.exports = (grunt) ->
     "open"
     "watch"
   ]
+  grunt.registerTask "s", ["server"]
   return
