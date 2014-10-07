@@ -132,20 +132,20 @@ module.exports = (grunt) ->
 
 
     webfont:
-      compile:
-        src: ['./src/icons/{,**/}*.svg']
+      svg:
+        src: ['./src/graphics/{,**/}*.svg']
         dest: './app/assets/font'
         destCss: './src/base-styles/icons-map'
         options:
           stylesheet: 'styl'
           relativeFontPath: '../font'
           types: "eot,woff"
-
+          syntax: 'bootstrap'
 
 
     sprite:
-      compile:
-        src: ['./src/sprites/{,**/}*.png']
+      png:
+        src: ['./src/graphics/{,**/}*.png']
         destImg: './app/assets/img/<%= pkg.name %>-sprite.png'
         destCSS: './src/base-styles/sprite-map.styl'
         imgPath: '../img/<%= pkg.name %>-sprite.png'
@@ -154,9 +154,12 @@ module.exports = (grunt) ->
         engine: 'pngsmith'
         cssFormat: 'stylus'
 
+
     open:
       server:
         path: "http://localhost:<%= connect.options.port %>"
+
+
 
     watch:
       stylus:
@@ -175,13 +178,17 @@ module.exports = (grunt) ->
         files: "./src/{,**/}*.jade"
         tasks: ["process-markup"]
 
-      sprites:
-        files: "<%= sprite.compile.src %>"
-        tasks: ["process-sprites"]
+      sprite:
+        files: "<%= sprite.png.src %>"
+        tasks: ["sprite"]
+        options:
+          reload: on
 
-      icons:
-        files: "<%= webfont.compile.src %>"
-        tasks: ["process-graphics"]
+      webfont:
+        files: "<%= webfont.svg.src %>"
+        tasks: ["webfont"]
+        options:
+          reload: on
 
       livereload:
         options:
