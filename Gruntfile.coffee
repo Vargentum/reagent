@@ -135,7 +135,7 @@ module.exports = (grunt) ->
       svg:
         src: ['./src/graphics/{,**/}*.svg']
         dest: './app/assets/font'
-        destCss: './src/base-styles/icons-map'
+        destCss: './src/base-styles/graphics-map'
         options:
           stylesheet: 'styl'
           relativeFontPath: '../font'
@@ -147,7 +147,7 @@ module.exports = (grunt) ->
       png:
         src: ['./src/graphics/{,**/}*.png']
         destImg: './app/assets/img/<%= pkg.name %>-sprite.png'
-        destCSS: './src/base-styles/sprite-map.styl'
+        destCSS: './src/base-styles/graphics-map/sprites.styl'
         imgPath: '../img/<%= pkg.name %>-sprite.png'
         algorithm: 'binary-tree'
         padding: 2
