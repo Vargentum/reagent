@@ -108,10 +108,27 @@ module.exports = (grunt) ->
 
     jade:
       compile:
+        expand: on
+        flatten: on
         src: ['./src/components/*.jade']  #core files without components
-        dest: './app/index.html'
+        dest: './temp'
+        ext: '.html'
         options:
           pretty: on
+
+
+    htmlmin:
+      markup:
+        options:
+          removeComments: on
+          collapseWhitespace: on
+          removeAttributeQuotes: on
+        expand: on  
+        flatten: true
+        src: ["./temp/{,**/}*.html"]
+        dest: './app'
+        ext: '.html'
+
 
 
     webfont:
@@ -187,6 +204,7 @@ module.exports = (grunt) ->
   ]
   grunt.registerTask "process-markup", [
     "jade"
+    "htmlmin"
   ]
   grunt.registerTask "process-plugins", [
     "concat:plugins"
