@@ -3,4 +3,6 @@
 node_modules
 psd/
 temp/
+app/
+src/base-styles/icons-map
 *.sublime*
