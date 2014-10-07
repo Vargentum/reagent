@@ -227,6 +227,28 @@ container($width = $base-max-w)
   padding-left: 10px
   padding-right: 10px
 
+/*--------------------------------------
+  Margin & Padding axis
+--------------------------------------*/
+-hlpr(prop1, prop2, args)
+  {prop1} args[0]
+  if args[1]
+    {prop2} args[1]
+  else 
+    {prop2} args[0]
+
+margin-x()
+  -hlpr(margin-right, margin-left, arguments)
+
+margin-y()
+  -hlpr(margin-top, margin-bottom, arguments)
+
+padding-x()
+  -hlpr(padding-right, padding-left, arguments)
+
+padding-y()
+  -hlpr(padding-top, padding-bottom, arguments)
+
 
 /*--------------------------------------
     Responsive helpers
