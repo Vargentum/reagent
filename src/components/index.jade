@@ -1,0 +1,55 @@
+doctype html
+<!--[if IE 8]> <html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9]> <html class="ie ie9" lang="en"> <![endif]-->
+html.no-js(lang='en')
+
+  head
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    //meta(name='viewport', content='width=device-width,initial-scale=1'
+    
+    //- Primary stylesheet
+    link(href='assets/css/reagent-styles.css', rel='stylesheet')
+    //- link(href='assets/css/reagent-styles.min.css', rel='stylesheet')
+    
+
+
+  body(itemscope, itemtype='http://schema.org/WebPage')
+
+
+    // HEADER
+    header
+
+      //- i.icon.icon_shape-783
+      //- i.icon.icon_shape-787
+      //- i.icon.icon_test-12
+      //- i.icon.icon_dida-1
+
+      a.logo(href='/', itemprop='url')
+        img(src='assets/img/dida-1.svg', alt='', itemprop='logo', itemscope='', itemtype='http://schema.org/ImageObject')
+        img(src='assets/img/test-12.svg', alt='', itemprop='logo', itemscope='', itemtype='http://schema.org/ImageObject')
+        span.logo__hidden(itemprop='name')
+
+      nav.nav(role='navigation')
+        a.nav__link.is-active(href='#')
+        a.nav__link(href='#')
+
+
+    // CONTENT
+    main.l-main
+
+      //- include pages/main/main
+
+
+    // FOOTER
+    footer.l-footer
+
+      small.copyright
+
+
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(src='assets/js/reagent-plugins.js')
+    script(src='assets/js/reagent-components.js')
+    // script(src='assets/js/reagent-plugins.min.js')
+    // script(src='assets/js/reagent-components.min.js')
+

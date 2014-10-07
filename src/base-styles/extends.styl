@@ -1,0 +1,29 @@
+/*--------------------------------------
+    Some useful classes
+--------------------------------------*/
+for $i in baseline top middle bottom
+  .l-hLine--{$i}
+    hLine($i)
+
+
+for $i in flex-start flex-end stretch center
+  .l-jLine--{$i}
+    justifize($i)
+
+
+.l-container
+  container()
+
+
+.hide-text,
+.text-hide
+  hide-text()
+
+
+.is-shown
+  visibility visible !important
+  position relative !important
+
+.is-hidden
+  visibility hidden !important
+  position absolute !important
