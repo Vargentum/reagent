@@ -342,7 +342,9 @@ test($color = red)
 
 
 trans()
-  transition-property arguments[0]
+  if arguments[0] == true
+    transition-property arguments[0]
+
   if arguments[1] == true
     transition-duration arguments[1]
   else
