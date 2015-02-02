@@ -133,9 +133,9 @@ module.exports = (grunt) ->
 
     webfont:
       svg:
-        src: ['./src/graphics/{,**/}*.svg']
+        src: ['./src/graphics/svg/{,**/}*.svg']
         dest: './app/assets/font'
-        destCss: './src/base-styles/graphics-map'
+        destCss: './src/base-styles/font-map'
         options:
           stylesheet: 'styl'
           relativeFontPath: '../font'
@@ -144,15 +144,35 @@ module.exports = (grunt) ->
 
 
     sprite:
-      png:
-        src: ['./src/graphics/{,**/}*.png']
-        destImg: './app/assets/img/<%= pkg.name %>-sprite.png'
-        destCSS: './src/base-styles/graphics-map/sprites.styl'
+      sprites:
+        src: ['./src/graphics/sprites/{,**/}*.png']
+        dest: './app/assets/img/<%= pkg.name %>-sprite.png'
+        destCss: './src/base-styles/sprite-map.styl'
         imgPath: '../img/<%= pkg.name %>-sprite.png'
-        algorithm: 'binary-tree'
         padding: 2
-        engine: 'pngsmith'
-        cssFormat: 'stylus'
+
+
+    retinafy:
+      images:
+        files: [
+          expand: on
+          cwd: './src/graphics/images'
+          src: ['{,**/}*.{jpg,png}', '!{,**/}*_2x.{jpg,png}']
+          dest: './src/graphics/images'
+        ]
+        options:
+          sizes:
+            '200%': {suffix: '_2x'}
+
+
+    imagemin:
+      images:
+        files: [
+          expand: on
+          cwd: './src/graphics/images'
+          src: ['{,**/}*.{jpg,png}']
+          dest: './assets/img'
+        ]
 
 
     open:
@@ -179,7 +199,7 @@ module.exports = (grunt) ->
         tasks: ["process-markup"]
 
       sprite:
-        files: "<%= sprite.png.src %>"
+        files: "<%= sprite.sprites.src %>"
         tasks: ["sprite"]
         options:
           reload: on
@@ -187,6 +207,12 @@ module.exports = (grunt) ->
       webfont:
         files: "<%= webfont.svg.src %>"
         tasks: ["webfont"]
+        options:
+          reload: on
+
+      images:
+        files: "./src/graphics/images/{,**/}*.{jpg,png}"
+        tasks: ["process-images"]
         options:
           reload: on
 
@@ -199,9 +225,14 @@ module.exports = (grunt) ->
   grunt.registerTask "process-html", [
     "includes"
   ]
+  grunt.registerTask "process-images", [
+    "newer:retinafy"
+    "newer:imagemin"
+  ]
   grunt.registerTask "process-graphics", [
     "sprite"
     "webfont"
+    "process-images"
   ]
   grunt.registerTask "process-styles", [
     "concat:styles"
