@@ -1,0 +1,128 @@
+/*
+Flex tools: classes-helpers for more papidly web-development.
+Important! Works only at browsers that support
+Table of content:
+1. f-box: initial component and its states, which gives you the core flexbox power
+2. f-col:  you can create grids with it
+3. f-align: control direction of content inside box
+
+*/
+
+
+/*----------------------------
+  Flex init classes
+----------------------------*/
+.f-box
+  display flex
+  
+.f-line
+  display inline-flex
+
+
+
+/*----------------------------
+  Gap setters:
+----------------------------*/
+$gap-sizes = S .5
+            ,M 1
+            ,L 2
+
+.f-gap
+  
+  gap($multi = 1, $gap = $grid-gap)
+    margin-right ($gap * $multi)
+    margin-left  ($gap * $multi)
+
+  for $each in $gap-sizes
+    &--{$each[0]}
+      gap ($each[1] / -2)  // negative 1/2 of gap to compensate positive f-grid gaps
+    
+      & > *
+        gap ($each[1] / 2)
+
+
+
+/*----------------------------
+  Grid classes
+----------------------------*/
+.f-grid  
+  flex 0 1 auto  //reset for correctly working
+
+  for $each in 1..$grid-col
+    &--{$each}
+      $width = ($each / $grid-col * 100%)
+      flex-basis $width
+              
+      for $gap in $gap-sizes
+        .f-gutter--{$gap[0]} > &
+          flex-basis s('calc(%s - (%s * %s))', $width, $grid-gap, $gap[1])
+
+
+
+/*----------------------------
+  Flex aligners bunch
+----------------------------*/
+
+.f-align
+  //    1-1       1-2       1-3
+  //
+  //
+  //    2-1       2-2       2-3  - center
+  //    21-1      21-2      21-3 - baseline
+  //
+  //
+  //    3-1       3-2       3-3
+  //
+  //
+  // 13 - from 1 to 3
+
+
+  $cases = '1-1' flex-start flex-start
+          ,'1-2' flex-start center
+          ,'1-3' flex-start flex-end
+          
+          ,'2-1' center flex-start
+          ,'2-2' center center
+          ,'2-3' center flex-end
+          
+          ,'21-1' baseline flex-start
+          ,'21-2' baseline center
+          ,'21-3' baseline flex-end
+          
+          ,'3-1' flex-end flex-start
+          ,'3-2' flex-end center
+          ,'3-3' flex-end flex-end
+          
+          ,'1-13' flex-start space-between
+          ,'2-13' center space-between
+          ,'21-13' baseline space-between
+          ,'3-13' flex-end space-between
+          
+          ,'13-1' stretch flex-start
+          ,'13-2' stretch center
+          ,'13-3' stretch flex-end
+          ,'13-13' stretch space-between
+          
+  for $each in $cases
+    &--{unquote($each[0])}
+      align-items $each[1]
+      justify-content $each[2]
+
+
+/*----------------------------
+  Options classes
+----------------------------*/
+.f-option
+  
+  &--wrap
+    flex-wrap wrap
+    
+  &--reverse
+    flex-direction column
+
+  &--fill    
+    flex 1
+    max-width 100% //fix FF and IE content overflowing issue
+
+  &--nogap
+    margin-x 0
