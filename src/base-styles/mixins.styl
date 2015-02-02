@@ -274,26 +274,31 @@ h-min()
 /*
   Bootstrap inspired breakpoint ranges
 
-  lg - large      (960px and higher)
-  md - middle     (from 768px to 960px)
-  sm - small      (from 480px to 768px)
-  xs - very small (480px and lower)
+  lg - extra large  (from 1200px and higher)
+  md  - large       (from 960px to 1200px)
+  ms  - middle      (from 768px to 960px)
+  xs  - small       (from 480px to 768px)
+  xxs - very small  (from 320px to 480px)
 */
 
 lg()
-  +w-min($desktop-b)
+  +w-min($lg)
     {block}
 
 md()
-  +b('min-width:'+$tablet-b 'max-width:'+$desktop-b)
+  +b('min-width:'+$md 'max-width:'+$lg)
     {block}
 
 sm()
-  +b('min-width:'+$mobile-b 'max-width:'+$tablet-b)
+  +b('min-width:'+$sm 'max-width:'+$md)
     {block}
 
 xs()
-  +w-max($mobile-b)
+  +b('min-width:'+$xs 'max-width:'+$sm)
+    {block}
+
+xxs()
+  +b('min-width:'+$xxs 'max-width:'+$xs)
     {block}
 
 
