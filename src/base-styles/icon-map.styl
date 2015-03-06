@@ -1,0 +1,30 @@
+/*
+This file has excluded from build system in Gruntfile.coffee
+Keep in mind this, if you'll rename it.
+*/
+
+@font-face {
+  font-family: "reagent-font";
+  src: url('../fonts/reagent-font.eot');
+  src: url('../fonts/reagent-font.eot?#iefix') format('eot'),
+       url('../fonts/reagent-font.woff') format('woff'),
+       url('../fonts/reagent-font.ttf') format('truetype'),
+       url('../fonts/reagent-font.svg#reagent-font') format('svg');
+}
+
+.uv-icon:before {
+  font-family: "reagent-font";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none;
+}
+
+
+.uv-icon--test-icon:before {
+  @extend .uv-icon:before
+  content: "\E001";
+}
