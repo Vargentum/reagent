@@ -11,22 +11,22 @@ $icon_home = x y offset_x offset_y width height total_width total_height image_p
 At the bottom of this section, we provide information about the spritesheet itself
 $spritesheet = width height image $spritesheet_sprites;
 */
-$prevent-stylus-compilation-error_name = 'prevent-stylus-compilation-error';
-$prevent-stylus-compilation-error_x = 0px;
-$prevent-stylus-compilation-error_y = 0px;
-$prevent-stylus-compilation-error_offset_x = 0px;
-$prevent-stylus-compilation-error_offset_y = 0px;
-$prevent-stylus-compilation-error_width = 1px;
-$prevent-stylus-compilation-error_height = 1px;
-$prevent-stylus-compilation-error_total_width = 1px;
-$prevent-stylus-compilation-error_total_height = 1px;
-$prevent-stylus-compilation-error_image = '../img/reagent-sprite.png';
-$prevent-stylus-compilation-error = 0px 0px 0px 0px 1px 1px 1px 1px '../img/reagent-sprite.png' 'prevent-stylus-compilation-error';
-$spritesheet_width = 1px;
-$spritesheet_height = 1px;
-$spritesheet_image = '../img/reagent-sprite.png';
-$spritesheet_sprites = $prevent-stylus-compilation-error;
-$spritesheet = 1px 1px '../img/reagent-sprite.png' $spritesheet_sprites;
+$prevent-stylus-compilation-error-name = 'prevent-stylus-compilation-error';
+$prevent-stylus-compilation-error-x = 3px;
+$prevent-stylus-compilation-error-y = 0px;
+$prevent-stylus-compilation-error-offset-x = -3px;
+$prevent-stylus-compilation-error-offset-y = 0px;
+$prevent-stylus-compilation-error-width = 1px;
+$prevent-stylus-compilation-error-height = 1px;
+$prevent-stylus-compilation-error-total-width = 4px;
+$prevent-stylus-compilation-error-total-height = 1px;
+$prevent-stylus-compilation-error-image = '../img/reagent-sprite.png';
+$prevent-stylus-compilation-error = 3px 0px -3px 0px 1px 1px 4px 1px '../img/reagent-sprite.png' 'prevent-stylus-compilation-error';
+$spritesheet-width = 4px;
+$spritesheet-height = 1px;
+$spritesheet-image = '../img/reagent-sprite.png';
+$spritesheet-sprites = $prevent-stylus-compilation-error;
+$spritesheet = 4px 1px '../img/reagent-sprite.png' $spritesheet-sprites;
 
 /*
 The provided mixins are intended to be used with the array-like variables
@@ -65,6 +65,9 @@ sprite($sprite) {
 /*
 The `sprites` mixin generates identical output to the CSS template
   but can be overridden inside of Stylus
+
+This must be run when you have at least 2 sprites.
+  If run with a single sprite, then there will be reference errors.
 
 sprites($spritesheet_sprites);
 */

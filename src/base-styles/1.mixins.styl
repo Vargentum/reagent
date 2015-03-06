@@ -163,33 +163,6 @@ jLine()
     float: left
 
 
-fLine()
-  display flex
-  justify-content: arguments[0]
-  align-items:     arguments[1]
-
-
-
-justifize($align-items = center)
-  .flexbox &
-    fLine space-between $align-items
-
-  .no-flexbox &
-    jLine()
-
-
-
-ctr-at()
-  .flexbox &
-    fLine center center
-
-  .no-flexbox &
-    text-align center
-    if arguments
-      line-height arguments
-
-
-
 
 vAlign($type = middle, $full = true)
   hLine $type
@@ -227,13 +200,24 @@ p-ctr()
 
 
 
+ctr-at($w = auto, $h = $w)
+  size $w $h
+  .flexbox &
+    fLine center center
+
+  .no-flexbox &
+    text-align center
+    if arguments
+      line-height arguments
+
+
+
+
 container($width = $base-max-w)
   max-width: $width
   min-width $base-min-w
-  margin-left: auto
-  margin-right: auto
-  padding-left: 10px
-  padding-right: 10px
+  margin-x auto
+  padding-x 10px
 
 
 

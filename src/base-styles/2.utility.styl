@@ -1,14 +1,17 @@
 /*--------------------------------------
-    Some useful classes
+  Some useful utility classes
 --------------------------------------*/
-for $i in baseline top middle bottom
-  .l-hLine--{$i}
-    hLine($i)
+$hLine-cases = '1'  top
+              ,'2'  middle
+              ,'21' baseline
+              ,'3'  bottom
 
+.l-hLine
+  hLine()
 
-for $i in flex-start flex-end stretch center
-  .l-jLine--{$i}
-    justifize($i)
+for $each in $hLine-cases
+  .l-hLine--{unquote($each[0])}
+    hLine($each[1])
 
 
 .l-container
