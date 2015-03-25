@@ -54,13 +54,13 @@ gulp.task 'icon-font', ->
   gulp.src(path.iconFont.src, {base: './app/assets'})
     .pipe($.imagemin())
     .pipe($.iconfontCss(
-      fontName: pkg.name + '-font'
+      fontName: pkg.name + '-icon-font'
       path: path.iconFont.css.template
       targetPath: path.iconFont.css.src
       fontPath: '../fonts/'
     ))
     .pipe($.iconfont(
-      fontName: pkg.name + '-font'
+      fontName: pkg.name + '-icon-font'
       normalize: on
     ))
     .pipe(gulp.dest(path.iconFont.dest))
