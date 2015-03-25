@@ -1,6 +1,6 @@
 /*
-Flex tools: classes-helpers for more papidly web-development.
-Important! Works only at browsers that support
+Flex tools: classes-helpers for more rapidly web-development.
+Important! Works only at browsers that has Flexbox support
 Table of content:
 1. f-box: initial component and its states, which gives you the core flexbox power
 2. f-col:  you can create grids with it
@@ -10,7 +10,15 @@ Table of content:
 
 
 /*----------------------------
-  Flex init classes
+  Settings
+----------------------------*/
+$grid-gap = 10px
+$grid-col = 12
+
+
+
+/*----------------------------
+  Init classes
 ----------------------------*/
 .f-box
   display flex
@@ -20,8 +28,18 @@ Table of content:
 
 
 
+
 /*----------------------------
-  Gap setters:
+  Filling
+----------------------------*/
+
+.f-fill    
+  flex 1 0 0%
+  max-width 100% //fix FF and IE content overflowing issue
+
+
+/*----------------------------
+  Gap controllers
 ----------------------------*/
 $gap-sizes = S .5
             ,M 1
@@ -43,7 +61,7 @@ $gap-sizes = S .5
 
 
 /*----------------------------
-  Grid classes
+  Grid controllers
 ----------------------------*/
 .f-grid  
   flex 0 1 auto  //reset for correctly working
@@ -53,14 +71,14 @@ $gap-sizes = S .5
       $width = ($each / $grid-col * 100%)
       flex-basis $width
               
-      for $gap in $gap-sizes
-        .f-gutter--{$gap[0]} > &
-          flex-basis s('calc(%s - (%s * %s))', $width, $grid-gap, $gap[1])
+      for $each in $gap-sizes
+        .f-gap--{$each[0]} > &
+          flex-basis s('calc(%s - (%s * %s))', $width, $grid-gap, $each[1])
 
 
 
 /*----------------------------
-  Flex aligners bunch
+  Align controllers
 ----------------------------*/
 
 .f-align
@@ -110,19 +128,41 @@ $gap-sizes = S .5
 
 
 /*----------------------------
-  Options classes
+  Self align controllers
+----------------------------*/
+.f-self-align
+  $cases = '1'  flex-start
+          ,'2'  center
+          ,'21' baseline
+          ,'3'  flex-end
+          
+  for $each in $cases
+    &--{unquote($each[0])}
+      align-self $each[1]
+
+/*----------------------------
+  Direction controllers
+----------------------------*/
+.f-dir
+  
+  $cases = 'row' row
+          ,'col' column
+          ,'row-rvs' row-reverse
+          ,'col-rvs' column-reverse
+  
+  for $each in $cases
+    &--{unquote($each[0])}
+      flex-direction $each[1]
+
+
+/*----------------------------
+  Options
 ----------------------------*/
 .f-option
   
   &--wrap
     flex-wrap wrap
-    
-  &--reverse
-    flex-direction column
-
-  &--fill    
-    flex 1
-    max-width 100% //fix FF and IE content overflowing issue
 
   &--nogap
-    margin-x 0
+    margin-left  0
+    margin-right 0
