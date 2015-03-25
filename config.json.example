@@ -1,0 +1,6 @@
+{
+  "server": {
+    "port": 9050,
+    "host": "localhost"
+  }
+}

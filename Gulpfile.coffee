@@ -1,9 +1,9 @@
-gulp =     require('gulp')
-$ =  require('gulp-load-plugins')()
-pkg =      require('./package.json')
+gulp     = require('gulp')
+$        = require('gulp-load-plugins')()
+pkg      = require('./package.json')
+config   = require('./config.json')
 pngquant = require('imagemin-pngquant')
-jeet =     require('jeet')
-
+jeet     = require('jeet')
 
 
 path = 
@@ -182,8 +182,8 @@ gulp.task 'webserver', ->
   gulp.src('app')
     .pipe($.serverLivereload(
       livereload: on
-      host: 'localhost'
-      port: 9001
+      host: config.server.host
+      port: config.server.port
     ))
 
 
