@@ -4,6 +4,8 @@ pkg      = require('./package.json')
 config   = require('./config.json')
 pngquant = require('imagemin-pngquant')
 jeet     = require('jeet')
+del      = require('del')
+vinylPaths = require('vinyl-paths')
 
 
 path = 
@@ -43,8 +45,9 @@ path =
 
 
 
-gulp.task 'clear', ->
-  $.rimraf('./app')
+gulp.task 'clean', -> 
+  gulp.src('./app/*')
+    .pipe(vinylPaths(del))
 
 
 gulp.task 'icon-font', ->
@@ -217,7 +220,7 @@ gulp.task 'watch', ->
 
 
 gulp.task 'build', [
-  'clear'
+  'clean'
   'jade'
   'styles'
   'icon-font'
