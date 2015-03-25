@@ -24,7 +24,7 @@ path =
       css: './src/base-styles'
 
   scripts:
-    plugins: './src/plugins/{,**/}*.js'
+    plugins: './src/{,**/}*.js'
     coffee: './src/{,**/}*.coffee'
     dest: './app/assets/js'
 
