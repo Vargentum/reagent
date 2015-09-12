@@ -1,3 +1,4 @@
+$html = $('html')
 Responsive = {
 
   xs: 480
@@ -15,8 +16,7 @@ Responsive = {
 }.setRanges()
 
 
-$html = $('html')
-
+# Responsive hooks
 for key, val of Responsive.ranges
   fn = (key, val) ->
     enquire.register 'screen and ' + val,
@@ -26,3 +26,14 @@ for key, val of Responsive.ranges
       unmatch: ->
         $html.removeClass '' + key
   fn key, val
+
+
+# Platform hooks
+[
+  platform.name
+  platform.os.family
+  platform.version
+].forEach (type) ->
+  $html.addClass type
+  console.log type
+

@@ -233,37 +233,21 @@ container($width = $base-max-w)
 
 
 /*--------------------------------------
-    Responsive helpers
+  Mobile first helpers
 --------------------------------------*/
 b()
   if arguments[1]
-    condition = s('only screen and (%s) and (%s)', unquote(arguments[0]), unquote(arguments[1]) )
+    condition = s('only screen and (min-width: %s) and (max-width: %s)', arguments[0], arguments[1])
   else
-    condition = s('only screen and (%s)', unquote(arguments[0]) )
+    condition = s('only screen and (min-width: %s)', arguments[0])
 
   @media condition
     {block}
 
-w-max()
-  condition = 'only screen and (max-width: %s)' % arguments[0]
+b-max()
+  condition = s('only screen and (max-width: %s)', arguments[0])
   @media condition
     {block}
-
-w-min()
-  condition = 'only screen and (min-width: %s)' % arguments[0]
-  @media condition
-    {block}
-
-h-max()
-  condition = 'only screen and (max-height: %s)' % arguments[0]
-  @media condition
-    {block}
-
-h-min()
-  condition = 'only screen and (min-height: %s)' % arguments[0]
-  @media condition
-    {block}
-
 
 /*
   Bootstrap inspired breakpoint ranges
@@ -276,23 +260,23 @@ h-min()
 */
 
 lg()
-  +w-min($lg)
+  +b($lg)
     {block}
 
 md()
-  +b('min-width:'+$md 'max-width:'+$lg)
+  +b($md $lg)
     {block}
 
 sm()
-  +b('min-width:'+$sm 'max-width:'+$md)
+  +b($sm $md)
     {block}
 
 xs()
-  +b('min-width:'+$xs 'max-width:'+$sm)
+  +b($xs $sm)
     {block}
 
 xxs()
-  +b('max-width:'+$xs)
+  +b-max($xs)
     {block}
 
 

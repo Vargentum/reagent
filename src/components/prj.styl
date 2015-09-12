@@ -9,8 +9,6 @@
 
   &-header
     absolute left right top
-    test()
-    
 
     &__content
       container()
@@ -19,8 +17,9 @@
         @extend .f-box
         @extend .f-align--2-2
 
-      +w-min($sm)
+      +b($sm)
         padding-top 38px
+        padding-x 50px
         .flexbox &
           justify-content space-between
         .no-flexbox &
@@ -100,41 +99,49 @@
 
 
   &-first-screen
-    height 540px
-    padding-x 15px
-    text-align: center
-    color $body-c
 
-    +xs()
+    +b-max($xs)
       img "first-screen-bg-mobile.jpg"
-
-    +sm()
+    +b($xs $md)
       img "first-screen-bg-tablet.jpg"
-
-    +w-min($md)
+    +b($md)
       img "first-screen-bg-desktop.jpg"
 
-      
-   
-    .flexbox &
-      @extend .f-box
-      @extend .f-align--2-2
-      @extend .f-dir--col
-    .no-flexbox &
-      vAlign middle
     
-    +w-min($sm)
-      height: 700px
+    &__content
+      height 540px
+      padding-x 20px
+      text-align: center
+      color $body-c
+     
+      .flexbox &
+        @extend .f-box
+        @extend .f-align--2-2
+        @extend .f-dir--col
+      .no-flexbox &
+        vAlign middle
+      
+      +b($sm + 20)
+        size: $sm 700px
+        margin-x auto
+        padding-x 0
+        
+
 
 
     &__title
       text-transform uppercase
-      font 700 30px $title-f
+      font 700 29px $title-f
       margin-bottom 15px
+      .win &
+        font-size 30px
       
-      +w-min($sm)
-        font-size 52px
-        margin-bottom 35px
+
+      +b($sm)
+        font-size 46px
+        margin-bottom 30px
+        .win &
+          font-size 52px
 
 
     &__sub-title
@@ -142,7 +149,7 @@
       font-weight 100
       margin-bottom 20px
       
-      +w-min($sm)
+      +b($sm)
         font-size: 24px
         margin-bottom 40px
 
@@ -151,7 +158,7 @@
       @extend .uv-btn--brand-c
       @extend .uv-btn--brand-c.is-inverted
 
-      .xs &
+      .xxs &
         @extend .uv-btn--block
         
     
