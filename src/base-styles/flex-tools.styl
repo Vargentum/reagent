@@ -8,15 +8,6 @@ Table of content:
 
 */
 
-
-/*----------------------------
-  Settings
-----------------------------*/
-$grid-gap = 10px
-$grid-col = 12
-
-
-
 /*----------------------------
   Init classes
 ----------------------------*/
@@ -36,6 +27,11 @@ $grid-col = 12
 .f-fill    
   flex 1 0 0%
   max-width 100% //fix FF and IE content overflowing issue
+
+    
+  .firefox &
+    min-width: 0  //fix ellipsis bug inside flex containers at FF
+
 
 
 /*----------------------------
@@ -166,3 +162,6 @@ $gap-sizes = S .5
   &--nogap
     margin-left  0
     margin-right 0
+
+  &--nofill
+    flex 0 1 auto

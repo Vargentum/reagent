@@ -11,22 +11,128 @@ html.no-js(lang='en')
     script(src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js")
     
     //- Primary stylesheet
-    link(href='assets/css/reagent-styles.min.css', rel='stylesheet')
-    //- link(href='assets/css/reagent-styles.css', rel='stylesheet')
+    style
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+      @import url("https://fonts.googleapis.com/css?family=Roboto");
+      //- @import url("./assets/css/urlaubsgluck-styles.css")
+      @import url("assets/css/urlaubsgluck-styles.min.css")
     
 
 
   body(itemscope, itemtype='http://schema.org/WebPage')
+  
+    header.prj-header
+      a.prj-logo(href="/") Urlaubsglück
+      .prj-user-actions
+        button.prj-user-actions__login Log in
+        button.prj-user-actions__signup Sign up
 
-    h1 
-      i.uv-icon--test-icon
-      | Welcome to reagent
+
+    section.first-screen
+      h1.first-screen__title Share your holiday dreams
+      h2.first-screen__sub-title And find the perfect partner to fullfill it
+      button.first-screen__action Find your holiday partner
+
+
+    section.uv-sec
+      header.uv-sec__header
+        h2.uv-sec__title How Urlaubsglück works?
+
+      div.uv-sec__main
+        - var priCount = 0;
+        ul.prj-steps-list-pri
+          while priCount < 3
+            - priCount++; 
+            - var secCount = 0;
+            while secCount < 3
+              - secCount++;
+              li.prj-steps-list-pri__unit
+                ul.prj-steps-list-sec
+                  li.prj-steps-list-sec__unit
+                    article.prj-step
+                      span.prj-step__status Step #{priCount} #{secCount}
+                      h3.prj-step__title Sed leo enim, condimentum
+                      p Quisque libero libero, dictum non turpis in, luctus semper lorem. Donec rhoncus a leo sit amet facilisis.
+
+
+
+    
+
+    section.uv-sec
+      header.uv-sec__header
+        h2.uv-sec__title Meet a partner for your best holiday
+
+      div.uv-sec__main
+        ul.prj-partners-list
+          li.prj-partners-list__unit
+            article.prj-partner
+              aside
+                img(url="http://lorempixel.com/120/120/people/1")
+
+    
+
+    section.uv-sec
+      header.uv-sec__header
+        h2.uv-sec__title Discover holiday activity ideas
+
+      div.uv-sec__main
+        ul.prj-ideas-list
+          li.prj-ideas-list__unit
+            article.prj-idea(style="background-image: url()")
+              h3.prj-idea__title
+                a.prj-idea__title-link Sport and Activity
+
+
+
+
+    section.uv-sec
+      header.uv-sec__header
+        h2.uv-sec__title Discover holiday activity ideas
+
+      div.uv-sec__main
+        .prj-search-interests
+          h3.prj-search-interests__title
+
+          form.prj-search-interests__form
+            input.prj-search-interests__input(placeholder="Enter your interests")
+            button.prj-search-interests__submit Search partners
+
+
+  
+
+    footer.prj-footer
+      .prj-footer__column
+        .prj-logo.prj-logo--brand URLAUBSGLÜCK
+
+      .prj-footer__column.prj-useful-links
+        h4.prj-useful-links__title Company
+        ul.prj-useful-links__list
+          li.prj-useful-links__list-unit
+            a.prj-useful-link(href="#") About
+          li.prj-useful-links__list-unit
+            a.prj-useful-link(href="#") Contacts
+          li.prj-useful-links__list-unit
+            a.prj-useful-link(href="#") Press
+          li.prj-useful-links__list-unit
+            a.prj-useful-link(href="#") Blog
+
+      .prj-footer__column.prj-useful-links
+        h4.prj-useful-links__title Partners
+
+
+      .prj-copyright
+        .prj-copyright__caption Designed by
+        .prj-copyright__logo Areto Development
+
+
+
+
 
 
 
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-    script(src='assets/js/reagent-plugins.js')
-    script(src='assets/js/reagent-scripts.js')
-    // script(src='assets/js/reagent-plugins.min.js')
-    // script(src='assets/js/reagent-scripts.min.js')
+    script(src='assets/js/urlaubsgluck-plugins.js')
+    script(src='assets/js/urlaubsgluck-scripts.js')
+    // script(src='assets/js/urlaubsgluck-plugins.min.js')
+    // script(src='assets/js/urlaubsgluck-scripts.min.js')
 
