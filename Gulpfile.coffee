@@ -1,37 +1,38 @@
 gulp     = require('gulp')
 $        = require('gulp-load-plugins')()
+connect  = require('gulp-connect')
 pkg      = require('./package.json')
 config   = require('./config.json')
 pngquant = require('imagemin-pngquant')
 jeet     = require('jeet')
 del      = require('del')
 vinylPaths = require('vinyl-paths')
-
+runSequence = require('run-sequence')
 
 path = 
   css:
     src: [
-      './src/{,**/}*.styl'
+      './src/**/*.styl'
       "!**/icon-map-template.styl"
     ]
     dest: './app/assets/css'
 
   img:
-    src: './src/graphics/images/{,**/}*.{png,jpg,gif}'
+    src: './src/graphics/images/**/*.{png,jpg,gif}'
     dest: './app/assets/img'
 
   sprites:
-    src: './src/graphics/sprites/{,**/}*.png'
+    src: './src/graphics/sprites/**/*.png'
     dest:
       css: './src/base-styles'
 
   scripts:
-    plugins: './src/{,**/}*.js'
-    coffee: './src/{,**/}*.coffee'
+    plugins: './src/**/*.js'
+    coffee: './src/**/*.coffee'
     dest: './app/assets/js'
 
   jade:
-    all: './src/{,**/}*.jade'
+    all: './src/**/*.jade'
     pages: './src/components/*.jade'
     dest: './app/'
 
@@ -73,6 +74,7 @@ gulp.task 'jade', ->
     .pipe($.jade())
     .pipe($.htmlmin())
     .pipe(gulp.dest(path.jade.dest))
+    .pipe($.livereload())
 
 
 
@@ -91,6 +93,8 @@ gulp.task 'styles', ->
       suffix: '.min'
     ))
     .pipe(gulp.dest(path.css.dest))
+    .pipe($.livereload())
+
 
 
 
@@ -181,55 +185,73 @@ gulp.task 'coffee', ->
     .pipe(gulp.dest(path.scripts.dest))
 
 
-gulp.task 'webserver', ->
-  gulp.src('app')
-    .pipe($.serverLivereload(
-      livereload: on
-      host: config.server.host
-      port: config.server.port
-    ))
 
+gulp.task 'webserver', ->
+  connect.server
+    root: 'app'
+    host: config.server.host
+    port: config.server.port
+    middleware: (connect) ->
+      return [
+        (req, res, next) ->
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader('Access-Control-Allow-Methods', '*');
+          next()
+      ]
 
 
 gulp.task 'watch', ->
-  $.watch(path.css.src, ->
-    gulp.start 'styles'
+  $.livereload.listen(
+     quiet: on
+     )
+
+  $.watch(path.css.src, $.batch (cb) ->
+    gulp.start('styles')
+    cb()
   )
-  $.watch(path.img.src, ->
-    gulp.start 'img-retinafy'
-    gulp.start 'img-minify'
+  $.watch(path.img.src, $.batch (cb) ->
+    gulp.start('img-retinafy')
+    gulp.start('img-minify')
+    cb()
   )
-  $.watch(path.sprites.src, ->
-    gulp.start 'sprites'
+  $.watch(path.sprites.src, $.batch (cb) ->
+    gulp.start('sprites')
+    cb()
   )
-  $.watch(path.scripts.plugins, ->
-    gulp.start 'plugins'
+  $.watch(path.scripts.plugins, $.batch (cb) ->
+    gulp.start('plugins')
+    cb()
   )
-  $.watch(path.scripts.coffee, ->
-    gulp.start 'coffee'
+  $.watch(path.scripts.coffee, $.batch (cb) ->
+    gulp.start('coffee')
+    cb()
   )
-  $.watch(path.jade.all, ->
-    gulp.start 'jade'
+  $.watch(path.jade.all, $.batch (cb) ->
+    gulp.start('jade')
+    cb()
   )
-  $.watch(path.iconFont.src, ->
-    gulp.start 'iconFont'
-  )
-  $.watch('./Gulpfile.coffee', ->
-    gulp.start 'build'
+  $.watch(path.iconFont.src, $.batch (cb) ->
+    gulp.start('iconFont')
+    cb()
   )
 
 
-gulp.task 'build', [
-  'clean'
-  'jade'
-  'styles'
-  'icon-font'
-  'img-retinafy'
-  'img-minify'
-  'sprites'
-  'plugins'
-  'coffee'
-]
+
+gulp.task 'build', (callback) ->
+  runSequence(
+    'clean'
+    [
+      'icon-font'
+      'img-retinafy'
+      'img-minify'
+      'sprites'
+      'plugins'
+      'coffee'
+    ]
+    'jade'
+    'styles'
+    callback
+  )
 
 gulp.task 'server', [
   'build'
