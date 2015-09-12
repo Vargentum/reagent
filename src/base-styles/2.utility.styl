@@ -6,27 +6,42 @@ $hLine-cases = '1'  top
               ,'21' baseline
               ,'3'  bottom
 
-.l-hLine
+.ut-hLine
   hLine()
 
 for $each in $hLine-cases
-  .l-hLine--{unquote($each[0])}
+  .ut-hLine--{unquote($each[0])}
     hLine($each[1])
 
 
-.l-container
+.ut-container
   container()
 
 
-.hide-text,
-.text-hide
+.ut-hide-text,
+.ut-text-hide
   hide-text()
 
 
-.is-shown
-  visibility visible !important
-  position relative !important
+.ut-show
+  visibility visible
+  position relative
 
-.is-hidden
-  visibility hidden !important
-  position absolute !important
+.ut-hide
+  visibility hidden
+  position absolute
+
+/*------------------------------------*\
+    Responsive hiders/unhiders
+\*------------------------------------*/
+$responsive = xxs, xs, sm, md, lg
+
+for $each in $responsive
+  .ut-hide-{$each}
+    +$each()
+      hide()
+
+  .ut-show-{$each}
+    hide()
+    +$each()
+      show()

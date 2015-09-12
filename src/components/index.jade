@@ -1,7 +1,7 @@
 doctype html
 <!--[if IE 8]> <html class="ie ie8" lang="en"> <![endif]-->
 <!--[if IE 9]> <html class="ie ie9" lang="en"> <![endif]-->
-html.no-js(lang='en')
+html.flexbox.no-js(lang='en')
 
   head
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -13,25 +13,29 @@ html.no-js(lang='en')
     //- Primary stylesheet
     style
       @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
-      @import url("https://fonts.googleapis.com/css?family=Roboto");
-      //- @import url("./assets/css/urlaubsgluck-styles.css")
-      @import url("assets/css/urlaubsgluck-styles.min.css")
+      @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400");
+      @import url("./assets/css/urlaubsgluck-styles.css")
+      //- @import url("assets/css/urlaubsgluck-styles.min.css")
     
 
 
-  body(itemscope, itemtype='http://schema.org/WebPage')
-  
+  body(itemscope, itemtype='http://schema.org/WebPage').prj-body
+    include ./mixins.jade
+
+
     header.prj-header
-      a.prj-logo(href="/") Urlaubsglück
-      .prj-user-actions
-        button.prj-user-actions__login Log in
-        button.prj-user-actions__signup Sign up
+      div.prj-header__content
+        +logo('header-desktop')
+        .prj-user-actions
+          button.prj-user-actions__login Log in
+          button.prj-user-actions__signup Sign up
 
 
-    section.first-screen
-      h1.first-screen__title Share your holiday dreams
-      h2.first-screen__sub-title And find the perfect partner to fullfill it
-      button.first-screen__action Find your holiday partner
+    section.prj-first-screen
+      +logo('header-mobile')
+      h1.prj-first-screen__title Share your holiday dreams
+      h2.prj-first-screen__sub-title And find the perfect partner to fullfill it
+      button.prj-first-screen__action Find your holiday partner
 
 
     section.uv-sec

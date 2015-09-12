@@ -88,6 +88,7 @@ gulp.task 'styles', ->
     ))
     .pipe($.autoprefixer())
     .pipe(gulp.dest(path.css.dest))
+    .pipe($.livereload())
     .pipe($.cssmin())
     .pipe($.rename(
       suffix: '.min'
@@ -95,26 +96,6 @@ gulp.task 'styles', ->
     .pipe(gulp.dest(path.css.dest))
     .pipe($.livereload())
 
-
-
-
-gulp.task 'img-retinafy', ->
-  gulp.src(path.img.src)
-    .pipe($.changed(path.img.dest))
-    .pipe($.imageResize(
-      width: '200%'
-      height: '200%'
-    ))
-    .pipe($.rename(
-      suffix: '_2x'
-    ))
-    .pipe($.imagemin(
-      optimizationLevel: 3
-      progressive: on
-      interlaced: on
-      use: [pngquant()]
-    ))
-    .pipe(gulp.dest(path.img.dest))
 
 
 gulp.task 'img-minify', ->
@@ -210,7 +191,6 @@ gulp.task 'watch', ->
     cb()
   )
   $.watch(path.img.src, $.batch (cb) ->
-    gulp.start('img-retinafy')
     gulp.start('img-minify')
     cb()
   )
@@ -242,7 +222,6 @@ gulp.task 'build', (callback) ->
     'clean'
     [
       'icon-font'
-      'img-retinafy'
       'img-minify'
       'sprites'
       'plugins'

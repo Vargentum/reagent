@@ -1,0 +1,139 @@
+/*btn*/
+$btn-h-def                = 40px
+$btn-h-S                  = 20px
+$btn-h-M                  = $btn-h-def
+$btn-h-L                  = 60px
+
+$btn-radius               = 18px
+$btn-x-gap                = 20px
+$btn-fz                   = 14px
+$btn-fw                   = 700
+$btn-fc                   = $body-c
+
+$btn-active-cls           = unquote('.is-active')
+$btn-disabled-cls         = unquote('.is-disabled')
+$btn-inverted-cls         = unquote('.is-inverted')
+
+
+/*sec*/
+$sec-gap                  = 40px
+$sec-gap-nonMobile        = 100px
+     
+$sec-hdr-gap              = 15px
+$sec-hdr-gap-nonMobile    = 35px
+
+$sec-title-fz             = 22px
+$sec-title-fw             = 700
+
+
+
+
+.uv
+
+
+  /*---------------------------------
+    Buttons
+  ----------------------------------*/
+  
+  &-btn
+    pressable()
+    height:       $btn-h-def
+    padding-x:    $btn-x-gap
+    border-radius $btn-radius
+    font-size     $btn-fz
+    font-weight   $btn-fw
+    color         $btn-fc
+    trans unquote('background-color, border-color, color')
+    cursor pointer
+
+    //centerize non-button tags
+    &:not(button)
+      .flexbox &
+        @extend .f-box
+        @extend .f-align--2-2
+      .no-flexbox &
+        line-height $btn-h-def
+
+    
+    &:focus
+      outline 1px dotted $brand-c
+    
+
+    //keep button fuctionality without any styles
+    &--no-styles
+      padding 0
+      background none
+      border none
+      color inherit
+
+    
+    &--block
+      display block
+      width: 100%
+      text-align: center
+
+
+    /*Sizes*/
+    for $size in S M L
+      &--{$size}
+        height lookup('$btn-h-' + $size)
+        .no-flexbox &
+          line-height lookup('$btn-h-' + $size)
+    
+    /*Pallettes*/
+    for $clr in body-c brand-c error-c warning-c success-c
+      &--{$clr}
+        border 2px solid lookup('$' + $clr)
+        
+        &:hover
+        &{$btn-active-cls}
+          background-color lookup('$' + $clr)
+        
+        &{$btn-inverted-cls}
+          background-color lookup('$' + $clr)
+          
+          &:hover
+          &{$btn-active-cls}
+            background-color transparent
+        
+
+    &--body-c
+
+      &:hover
+      &{$btn-active-cls}
+        color $brand-c
+
+      &{$btn-inverted-cls}
+        color $brand-c
+          
+        &:hover
+        &{$btn-active-cls}
+          color $body-c
+
+        
+
+
+  
+  /*---------------------------------
+    Sections
+  ----------------------------------*/
+  &-sec
+    container()
+    margin-bottom $sec-gap
+    +w-min($sm)
+      margin-bottom $sec-gap-nonMobile
+
+    
+    &__header
+      margin-bottom $sec-hdr-gap
+      +w-min($sm)
+        margin-bottom $sec-hdr-gap-nonMobile
+
+
+    &__title
+      font $sec-title-fz $title-f
+      font-weight $sec-title-fw
+      text-align: center
+      
+    
+

@@ -1,5 +1,157 @@
-.prj-test
-  test()
-  position relative
+
+.prj
   
   
+  &-body
+    pass()
+    
+
+
+  &-header
+    absolute left right top
+    test()
+    
+
+    &__content
+      container()
+      padding-top 20px
+      .flexbox &
+        @extend .f-box
+        @extend .f-align--2-2
+
+      +w-min($sm)
+        padding-top 38px
+        .flexbox &
+          justify-content space-between
+        .no-flexbox &
+          jLine()
+
+
+
+  &-logo
+    font 700 20px $brand-f
+    text-transform: uppercase
+    letter-spacing 2px
+    
+     /*Pallettes*/
+    for clr in brand body
+      &--{clr}
+        color lookup('$' + clr '-c')
+    
+    &--header-mobile
+      @extend .prj-logo--body
+      @extend .ut-show-xs
+      margin-x auto
+      margin-bottom 40px
+      color $body-c
+
+    &--header-desktop
+      @extend .prj-logo--body
+      @extend .ut-hide-xs
+      @extend .ut-hide-xxs
+      color $body-c
+      
+    &--footer-mobile
+      @extend .prj-logo--brand
+      @extend .ut-show-xs
+      margin-x auto
+      margin-bottom 20px
+      color $brand-c
+    
+    &--footer-desktop
+      @extend .prj-logo--brand
+      @extend .ut-hide-xs
+      @extend .ut-hide-xxs
+      color $brand-c
+      
+
+
+
+
+  &-user-actions
+    color $body-c
+
+    .flexbox &
+      @extend .f-box
+      @extend .f-align--2-2
+      @extend .f-gap--L
+      
+    .no-flexbox &
+      hLine middle 
+      &>*
+        margin-x 10px
+
+  
+
+    &__login
+      @extend .uv-btn
+      button&
+        @extend .uv-btn--no-styles
+        
+      &:hover
+        text-decoration: underline
+
+
+    &__signup
+      @extend .uv-btn
+      @extend .uv-btn--body-c
+      
+
+
+
+  &-first-screen
+    height 540px
+    padding-x 15px
+    text-align: center
+    color $body-c
+
+    +xs()
+      img "first-screen-bg-mobile.jpg"
+
+    +sm()
+      img "first-screen-bg-tablet.jpg"
+
+    +w-min($md)
+      img "first-screen-bg-desktop.jpg"
+
+      
+   
+    .flexbox &
+      @extend .f-box
+      @extend .f-align--2-2
+      @extend .f-dir--col
+    .no-flexbox &
+      vAlign middle
+    
+    +w-min($sm)
+      height: 700px
+
+
+    &__title
+      text-transform uppercase
+      font 700 30px $title-f
+      margin-bottom 15px
+      
+      +w-min($sm)
+        font-size 52px
+        margin-bottom 35px
+
+
+    &__sub-title
+      font-size 18px
+      font-weight 100
+      margin-bottom 20px
+      
+      +w-min($sm)
+        font-size: 24px
+        margin-bottom 40px
+
+    &__action
+      @extend .uv-btn
+      @extend .uv-btn--brand-c
+      @extend .uv-btn--brand-c.is-inverted
+
+      .xs &
+        @extend .uv-btn--block
+        
+    

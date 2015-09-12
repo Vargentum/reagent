@@ -80,16 +80,25 @@ ellipsis()
     -webkit-line-clamp arguments[0]
 
 
+
 /*--------------------------------------
   Shortcuts for pseudo-elements
 --------------------------------------*/
+make-mask($gap = 0)
+  absolute left $gap top $gap right $gap bottom $gap
+
 pb()
   content: '';
-  display: block;
-  absolute: arguments
+  display: block; 
 
-  if arguments[0] == static
+  if arguments[0] is static
     position static
+
+  if arguments[0] is mask
+    make-mask()
+    
+  if arguments[0] isnt mask
+    absolute: arguments
 
 
 pi($align = auto)
@@ -101,8 +110,9 @@ pi($align = auto)
 /*--------------------------------------
   Quick image insert
 --------------------------------------*/
-img($name, $position = '50% 50%')
-  background-image data($img-path + $name)
+img($name, $position = '50% 50%', $repeat = no-repeat)
+  background-image url($img-path + $name)
+  background-repeat $repeat
   background-position unquote($position)
 
 
@@ -282,8 +292,9 @@ xs()
     {block}
 
 xxs()
-  +b('min-width:'+$xxs 'max-width:'+$xs)
+  +b('max-width:'+$xs)
     {block}
+
 
 
 
@@ -318,14 +329,11 @@ test($color = red)
   border $color !important
 
 
-trans()
-  if arguments[0] == true
-    transition-property arguments[0]
-
-  if arguments[1] == true
-    transition-duration arguments[1]
-  else
-    transition-duration $transition-duration
+trans($prop = all, $dur = $transition-duration)
+  transition-property $prop
+  transition-duration $dur
+  if $prop == none
+    transition none
 
 
 pressable($deep = 1px)
@@ -344,10 +352,10 @@ hide-text()
 
 
 hide()
-  display none !important
+  display none
 
 show()
-  display block !important
+  display block
 
 show-as()
-  display arguments !important
+  display arguments
