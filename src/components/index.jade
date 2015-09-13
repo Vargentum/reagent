@@ -106,28 +106,35 @@ html.flexbox.no-js(lang='en')
   
 
     footer.prj-footer
-      .prj-footer__column
-        .prj-logo.prj-logo--brand URLAUBSGLÜCK
+      .prj-footer__content
+        .prj-footer__column.prj-footer__column--logo
+          .prj-logo.prj-logo--footer URLAUBSGLÜCK
 
-      .prj-footer__column.prj-useful-links
-        h4.prj-useful-links__title Company
-        ul.prj-useful-links__list
-          li.prj-useful-links__list-unit
-            a.prj-useful-link(href="#") About
-          li.prj-useful-links__list-unit
-            a.prj-useful-link(href="#") Contacts
-          li.prj-useful-links__list-unit
-            a.prj-useful-link(href="#") Press
-          li.prj-useful-links__list-unit
-            a.prj-useful-link(href="#") Blog
+        .prj-footer__column.prj-footer__column--links
+          .prj-useful-links
+            h4.prj-useful-links__title Company
+            ul.prj-useful-links__list
+              li.prj-useful-links__list-unit
+                a.prj-useful-link(href="#") About
+              li.prj-useful-links__list-unit
+                a.prj-useful-link(href="#") Contacts
+              li.prj-useful-links__list-unit
+                a.prj-useful-link(href="#") Press
+              li.prj-useful-links__list-unit
+                a.prj-useful-link(href="#") Blog
 
-      .prj-footer__column.prj-useful-links
-        h4.prj-useful-links__title Partners
+        .prj-footer__column.prj-footer__column--links
+          .prj-useful-links
+            h4.prj-useful-links__title Partners
 
 
-      .prj-copyright
-        .prj-copyright__caption Designed by
-        .prj-copyright__logo Areto Development
+        .prj-footer__column.prj-footer__column--empty
+
+
+        .prj-footer__column.prj-footer__column--copyright
+          .prj-copyright
+            span.prj-copyright__caption Designed by
+            span.prj-copyright__logo Areto Development
 
 
 

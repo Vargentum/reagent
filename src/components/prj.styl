@@ -1,3 +1,5 @@
+$footer-mobile-bp = 550px
+
 
 .prj
   
@@ -40,39 +42,24 @@
     letter-spacing 2px
     
      /*Pallettes*/
-    for clr in brand body
+    for clr in brand-c body-c
       &--{clr}
-        color lookup('$' + clr '-c')
+        color lookup('$' + clr)
     
     &--header-mobile
-      @extend .prj-logo--body
+      @extend .prj-logo--body-c
       @extend .ut-show-xs
       margin-x auto
       margin-bottom 40px
-      color $body-c
 
     &--header-desktop
-      @extend .prj-logo--body
+      @extend .prj-logo--body-c
       @extend .ut-hide-xs
-      @extend .ut-hide-xxs
-      color $body-c
-      
-    &--footer-mobile
-      @extend .prj-logo--brand
-      @extend .ut-show-xs
-      margin-x auto
-      margin-bottom 20px
-      color $brand-c
+
+    &--footer
+      @extend .prj-logo--brand-c
+      font-size 16px
     
-    &--footer-desktop
-      @extend .prj-logo--brand
-      @extend .ut-hide-xs
-      @extend .ut-hide-xxs
-      color $brand-c
-      
-
-
-
 
   /*--------------------------------------------
     User actions (header)
@@ -114,12 +101,51 @@
     Footer
   --------------------------------------------*/
   &-footer
-    pass()
+    border-top 4px solid $brand-c
     
-    &__column
-      pass()
-      
 
+    &__content  //desktop first
+      container()
+      @extend .f-box
+      @extend .f-align--1-13
+  
+      +b-max($footer-mobile-bp)
+        display block
+
+
+
+    &__column //desktop first
+      margin-y 40px
+      
+      &--logo
+        @extend .f-grid--3
+        transform translateY(-10%) //ctr with link-titles
+      
+      &--links
+        @extend .f-grid--2
+        
+      &--copyright
+        @extend .f-grid--2
+        @extend .f-box
+        @extend .f-dir--col
+        transform translateY(-10%) //ctr with link-titles@extend .f-align--3-1
+        min-width $copyright-width
+
+      &--empty
+        @extend .ut-hide-xs
+        @extend .ut-hide-sm
+        @extend .f-fill
+
+
+
+      +b-max($footer-mobile-bp)
+        display block
+        width: 100%
+        margin-y 15px
+        text-align: center
+        &--logo
+        &--copyright
+          transform translateY(0) //ctr logo with link-titles
 
 
   /*--------------------------------------------
@@ -127,33 +153,51 @@
   --------------------------------------------*/
   &-useful-links
     
-
     &__title
-      pass()
-      
+      font 700 14px $title-f
+      margin-bottom 10px
 
     &__list
-      pass()
-
+      vLine 5px
       
     &__list-unit
       pass()
     
 
+  &-useful-link
+    color #666
+    font-size 14px
+    font-weight 300
+        
 
 
   /*--------------------------------------------
     Copyright (footer)    
   --------------------------------------------*/
-  &-copyright
-    
+  &-copyright    
 
     &__caption
-      pass()
+      display block
+      font 700 10px $title-f
+      color #ccc
+      text-transform uppercase
+      letter-spacing 1px
+      text-align: center
+      
+      +b($footer-mobile-bp)
+        text-align: right
       
 
     &__logo
-      pass()
+      hide-text()
+      display block
+      sprite $copyright
+      margin-top 5px
+      margin-x auto
+
+      +b($footer-mobile-bp)
+        margin-right 0
+
 
 
   /*--------------------------------------------
