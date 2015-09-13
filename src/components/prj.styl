@@ -6,7 +6,10 @@
     pass()
     
 
-
+  
+  /*--------------------------------------------
+    Header    
+  --------------------------------------------*/
   &-header
     absolute left right top
 
@@ -27,6 +30,10 @@
 
 
 
+  
+  /*--------------------------------------------
+    Logo (header & footer)    
+  --------------------------------------------*/
   &-logo
     font 700 20px $brand-f
     text-transform: uppercase
@@ -67,6 +74,9 @@
 
 
 
+  /*--------------------------------------------
+    User actions (header)
+  --------------------------------------------*/
   &-user-actions
     color $body-c
 
@@ -97,10 +107,61 @@
       
 
 
+  
 
+
+  /*--------------------------------------------
+    Footer
+  --------------------------------------------*/
+  &-footer
+    pass()
+    
+    &__column
+      pass()
+      
+
+
+
+  /*--------------------------------------------
+    Useful links (footer)    
+  --------------------------------------------*/
+  &-useful-links
+    
+
+    &__title
+      pass()
+      
+
+    &__list
+      pass()
+
+      
+    &__list-unit
+      pass()
+    
+
+
+
+  /*--------------------------------------------
+    Copyright (footer)    
+  --------------------------------------------*/
+  &-copyright
+    
+
+    &__caption
+      pass()
+      
+
+    &__logo
+      pass()
+
+
+  /*--------------------------------------------
+    First screen    
+  --------------------------------------------*/
   &-first-screen
 
-    +b-max($xs)
+    +xxs()
       img "first-screen-bg-mobile.jpg"
     +b($xs $md)
       img "first-screen-bg-tablet.jpg"
@@ -128,26 +189,24 @@
         
 
 
-
     &__title
       text-transform uppercase
-      font 700 29px $title-f
       margin-bottom 15px
-      .win &
-        font-size 30px
+      font 700 30px $title-f
+      apple-font-size 29px
       
 
       +b($sm)
-        font-size 46px
         margin-bottom 30px
-        .win &
-          font-size 52px
+        font-size 52px
+        apple-font-size 48px
 
 
     &__sub-title
       font-size 18px
-      font-weight 100
+      font-weight 300
       margin-bottom 20px
+      padding-x 25px // right phrase breaking
       
       +b($sm)
         font-size: 24px
@@ -157,8 +216,57 @@
       @extend .uv-btn
       @extend .uv-btn--brand-c
       @extend .uv-btn--brand-c.is-inverted
-
-      .xxs &
-        @extend .uv-btn--block
         
     
+
+
+  /*--------------------------------------------
+    Search interests
+  --------------------------------------------*/
+  &-search-interests
+    
+    &__title
+      text-align: center
+      font-size 18px
+      font-weight 300
+      margin-bottom: 10px
+      
+      +b($sm)
+        margin-bottom 35px
+      
+
+    &__form
+      //desktop first in reason of cant extend inside media mixin
+      .flexbox &
+        @extend .f-box
+        @extend .f-align--2-2
+        @extend .f-gap--M
+        
+      .no-flexbox &
+        hLine middle 10px
+        text-align: center
+
+      +xs()
+        .flexbox &
+          flex-direction column
+          
+        .no-flexbox &
+          vLine 10px      
+
+
+    &__input
+      @extend .uv-input
+
+      +xs()
+        margin-bottom 10px
+
+      +b($sm)
+        width 240px
+      
+
+    &__submit
+      @extend .uv-btn
+      @extend .uv-btn--brand-c
+      @extend .uv-btn--brand-c.is-inverted
+
+

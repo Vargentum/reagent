@@ -34,6 +34,5 @@ for key, val of Responsive.ranges
   platform.os.family
   platform.version
 ].forEach (type) ->
-  $html.addClass type
-  console.log type
+  $html.addClass type.replace(/\s/g, '')
 

@@ -9,22 +9,9 @@ body
   font-size: $base-f-size
   line-height: $base-f-height
   background-color: $body-c
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
 
-
-
-/*
-
-input:not([type=radio]):not([type=checkbox]), textarea
-  height: $input-h
-  padding 0 10px
-  label &
-    display block
-    width: 100%
-    margin-bottom: 10px
-
-for $type in radio checkbox
-[type={$type}]{}
-*/
 
 textarea
   vertical-align: top
@@ -33,14 +20,6 @@ textarea
 button
   border: none
   background-color: transparent
-
-
-label
-  display block
-  span
-    display block
-    margin-bottom: 2px
-
 
 
 a

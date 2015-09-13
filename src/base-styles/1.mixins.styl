@@ -213,7 +213,8 @@ p-ctr()
 ctr-at($w = auto, $h = $w)
   size $w $h
   .flexbox &
-    fLine center center
+    @extend .f-box
+    @extend .f-align--2-2
 
   .no-flexbox &
     text-align center
@@ -272,13 +273,21 @@ sm()
     {block}
 
 xs()
-  +b($xs $sm)
+  +b-max($sm)
     {block}
 
 xxs()
   +b-max($xs)
     {block}
 
+
+make-full-on-mobile()
+  +xs()
+    display block
+    width: 100%
+    max-width: $xs
+    if arguments
+      {block}
 
 
 
@@ -289,6 +298,15 @@ fluid-prop($prop-name, $static-w, $parent-w)
   {$prop-name}: $static-w / $parent-w * 100%
 
 
+
+
+/*--------------------------------------
+  Fallback for bolder Apple fonts
+--------------------------------------*/
+apple-font-size()
+  .OSX &
+  .iOS &
+    font-size arguments[0]
 
 
 /*--------------------------------------

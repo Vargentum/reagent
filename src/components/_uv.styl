@@ -15,6 +15,16 @@ $btn-disabled-cls         = unquote('.is-disabled')
 $btn-inverted-cls         = unquote('.is-inverted')
 
 
+/*input*/
+$input-placeholder-c      = #999 
+$input-h                  = 40px
+$input-padding-x          = 15px
+$input-radius             = 4px
+$input-border             = 1px solid #ccc
+$input-shadow             = 0 1px 0 #eee
+$input-focus-shadow       = 0 0 5px 0 $brand-c
+
+
 /*sec*/
 $sec-gap                  = 40px
 $sec-gap-nonMobile        = 100px
@@ -24,8 +34,6 @@ $sec-hdr-gap-nonMobile    = 35px
 
 $sec-title-fz             = 22px
 $sec-title-fw             = 700
-
-
 
 
 .uv
@@ -45,6 +53,10 @@ $sec-title-fw             = 700
     color         $btn-fc
     trans unquote('background-color, border-color, color')
     cursor pointer
+    
+    +make-full-on-mobile()
+      text-align: center
+
 
     //centerize non-button tags
     &:not(button)
@@ -65,12 +77,6 @@ $sec-title-fw             = 700
       background none
       border none
       color inherit
-
-    
-    &--block
-      display block
-      width: 100%
-      text-align: center
 
 
     /*Sizes*/
@@ -111,6 +117,27 @@ $sec-title-fw             = 700
           color $body-c
 
         
+
+
+  
+  /*---------------------------------
+    input
+  ----------------------------------*/        
+  &-input
+    placeholder   $input-placeholder-c
+    height        $input-h
+    border        $input-border
+    border-radius $input-radius
+    box-shadow    $input-shadow
+    padding-x     $input-padding-x
+    padding-bottom 2px //visually center text
+    trans box-shadow
+    make-full-on-mobile()
+    
+    &:focus
+      box-shadow  $input-focus-shadow
+
+    
 
 
   
