@@ -19,8 +19,8 @@ $btn-inverted-cls         = unquote('.is-inverted')
 $input-placeholder-c      = #999 
 $input-h                  = 40px
 $input-padding-x          = 15px
-$input-radius             = 4px
-$input-border             = 1px solid #ccc
+$input-radius             = $radius
+$input-border             = 1px solid $secondary-text-c
 $input-shadow             = 0 1px 0 #eee
 $input-focus-shadow       = 0 0 5px 0 $brand-c
 
@@ -58,6 +58,12 @@ $sec-title-fw             = 700
       text-align: center
 
 
+    &--no-full-on-mobile
+      +xs()
+        width: auto
+        max-width none
+
+
     //centerize non-button tags
     &:not(button)
       .flexbox &
@@ -79,28 +85,42 @@ $sec-title-fw             = 700
       color inherit
 
 
+    &--no-clickable
+      pressable false
+      cursor default
+
+
     /*Sizes*/
     for $size in S M L
       &--{$size}
         height lookup('$btn-h-' + $size)
+        padding-x (@height / 2) 
         .no-flexbox &
           line-height lookup('$btn-h-' + $size)
     
     /*Pallettes*/
     for $clr in body-c brand-c error-c warning-c success-c
       &--{$clr}
-        border 2px solid lookup('$' + $clr)
+        $pri-c = lookup('$' + $clr)
+        $sec-c = $body-c
+
+        color $pri-c
+        border 2px solid $pri-c
         
         &:hover
         &{$btn-active-cls}
-          background-color lookup('$' + $clr)
+          background-color $pri-c
+          color $sec-c
         
+
         &{$btn-inverted-cls}
-          background-color lookup('$' + $clr)
+          background-color $pri-c
+          color $sec-c
           
           &:hover
           &{$btn-active-cls}
             background-color transparent
+            color $pri-c
         
 
     &--body-c
@@ -162,5 +182,3 @@ $sec-title-fw             = 700
       font-weight $sec-title-fw
       text-align: center
       
-    
-

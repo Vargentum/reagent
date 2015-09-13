@@ -126,17 +126,6 @@ gulp.task 'sprites', ->
       use: [pngquant()]
     ))
     .pipe(gulp.dest(path.img.dest))
-    .pipe($.imageResize(
-      width: '200%'
-      height: '200%'
-    ))
-    .pipe($.rename(
-      suffix: '_2x'
-    ))
-    .pipe($.imagemin(
-      use: [pngquant()]
-    ))
-    .pipe(gulp.dest(path.img.dest))
 
   spriteData.css
     .pipe(gulp.dest(path.sprites.dest.css))

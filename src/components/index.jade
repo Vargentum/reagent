@@ -18,9 +18,9 @@ html.flexbox.no-js(lang='en')
       //- @import url("assets/css/urlaubsgluck-styles.min.css")
     
 
-
   body(itemscope, itemtype='http://schema.org/WebPage').prj-body
-    include ./mixins.jade
+    include ./template-helpers/fakedata.jade
+    include ./template-helpers/mixins.jade
 
 
     header.prj-header
@@ -49,19 +49,17 @@ html.flexbox.no-js(lang='en')
           while priCount < 3
             - priCount++; 
             - var secCount = 0;
-            while secCount < 3
-              - secCount++;
-              li.prj-steps-list-pri__unit
-                ul.prj-steps-list-sec
+            li.prj-steps-list-pri__unit
+              ul.prj-steps-list-sec
+                while secCount < 3
+                  - secCount++;
                   li.prj-steps-list-sec__unit
-                    article.prj-step
-                      span.prj-step__status Step #{priCount} #{secCount}
-                      h3.prj-step__title Sed leo enim, condimentum
-                      p Quisque libero libero, dictum non turpis in, luctus semper lorem. Donec rhoncus a leo sit amet facilisis.
+                    a(class="prj-step prj-step--#{priCount}" href="#")
+                      span.prj-step__status Step #{priCount}
+                      h3.prj-step__title= steps[priCount * secCount].title
+                      p.prj-step__description= steps[priCount * secCount].description
 
 
-
-    
 
     section.uv-sec
       header.uv-sec__header
@@ -69,11 +67,20 @@ html.flexbox.no-js(lang='en')
 
       div.uv-sec__main
         ul.prj-partners-list
-          li.prj-partners-list__unit
-            article.prj-partner
-              aside
-                img(url="http://lorempixel.com/120/120/people/1")
+          - var counter = 0;
+          while counter < 4
+            - counter++;
+            li.prj-partners-list__unit
+              article.prj-partner
+                aside.prj-partner__photo
+                  span(class="prj-partner__mark icon_#{partners[counter].icon_type}",
+                       style="background-color: #{partners[counter].icon_color}")
+                  img(src="./assets/img/partner-#{counter}.png")
+                h3.prj-partner__title= partners[counter].full_name
+                p.prj-partner__description= partners[counter].description
 
+      footer.prj-partners-list__load-more-wrapper
+        button..prj-partners-list__load-more See other partners
     
 
     section.uv-sec

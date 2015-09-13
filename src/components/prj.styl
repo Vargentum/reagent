@@ -1,4 +1,5 @@
 $footer-mobile-bp = 550px
+$steps-tablet-bp =  700px
 
 
 .prj
@@ -37,7 +38,7 @@ $footer-mobile-bp = 550px
     Logo (header & footer)    
   --------------------------------------------*/
   &-logo
-    font 700 20px $brand-f
+    title 20px 
     text-transform: uppercase
     letter-spacing 2px
     
@@ -81,6 +82,7 @@ $footer-mobile-bp = 550px
 
     &__login
       @extend .uv-btn
+      @extend .uv-btn--no-full-on-mobile
       button&
         @extend .uv-btn--no-styles
         
@@ -91,6 +93,8 @@ $footer-mobile-bp = 550px
     &__signup
       @extend .uv-btn
       @extend .uv-btn--body-c
+      @extend .uv-btn--no-full-on-mobile
+
       
 
 
@@ -118,18 +122,29 @@ $footer-mobile-bp = 550px
       margin-y 40px
       
       &--logo
-        @extend .f-grid--3
         transform translateY(-10%) //ctr with link-titles
+        .flexbox &
+          @extend .f-grid--3
+        .no-flexbox &
+          col 3
       
+
       &--links
         @extend .f-grid--2
-        
+        .no-flexbox &
+          col 2
+      
+
       &--copyright
-        @extend .f-grid--2
-        @extend .f-box
-        @extend .f-dir--col
         transform translateY(-10%) //ctr with link-titles@extend .f-align--3-1
         min-width $copyright-width
+        .flexbox &
+          @extend .f-grid--2
+          @extend .f-box
+          @extend .f-dir--col
+        .no-flexbox &
+          col 2
+
 
       &--empty
         @extend .ut-hide-xs
@@ -148,13 +163,15 @@ $footer-mobile-bp = 550px
           transform translateY(0) //ctr logo with link-titles
 
 
+
+
   /*--------------------------------------------
     Useful links (footer)    
   --------------------------------------------*/
   &-useful-links
     
     &__title
-      font 700 14px $title-f
+      title 14px
       margin-bottom 10px
 
     &__list
@@ -178,8 +195,7 @@ $footer-mobile-bp = 550px
 
     &__caption
       display block
-      font 700 10px $title-f
-      color #ccc
+      title 10px $secodary-text-c
       text-transform uppercase
       letter-spacing 1px
       text-align: center
@@ -204,13 +220,8 @@ $footer-mobile-bp = 550px
     First screen    
   --------------------------------------------*/
   &-first-screen
-
-    +xxs()
-      img "first-screen-bg-mobile.jpg"
-    +b($xs $md)
-      img "first-screen-bg-tablet.jpg"
-    +b($md)
-      img "first-screen-bg-desktop.jpg"
+    @extend .uv-sec
+    img-responsive "first-screen"
 
     
     &__content
@@ -262,6 +273,173 @@ $footer-mobile-bp = 550px
       @extend .uv-btn--brand-c.is-inverted
         
     
+
+
+  /*--------------------------------------------
+    Partners
+  --------------------------------------------*/
+  &-partners-list
+    vLine 30px
+      
+    +b($sm)
+      .flexbox &
+        display flex
+        flex-wrap wrap
+        
+      .no-flexbox &
+        hLine top
+    
+
+    &__unit
+      width 200px
+      margin-x auto
+
+      +b($sm)
+        width: 50%
+        padding-x 10px
+        
+      +b($md)
+        width: 25%
+        
+
+    &__load-more
+      
+
+    &__load-more-wrapper
+      .flexbox &
+        @extend .f-box
+        @extend .f-align--2-2
+        
+      .no-flexbox &
+        hLine()
+        text-align: center
+        
+        
+
+
+  &-partner
+    text-align: center
+
+    
+    &__photo
+      margin-x auto
+      margin-bottom 20px
+      size 120px
+      border-radius 50%
+      position relative
+      
+      img
+        display block
+        size 100%
+      
+
+    &__mark
+      $border-w = 4px
+      $size     = 40px
+
+      @extend .uv-icon
+      absolute bottom -($border-w) right -($border-w)
+      size $size
+      border-radius 50%
+      border $border-w solid $body-c
+      font-size 16px
+      color $body-c
+
+      .flexbox &
+        @extend .f-box      
+        @extend .f-align--2-2
+        
+      .no-flexbox &
+        line-height $size   
+
+
+    &__title
+      title 14px
+      margin-bottom 10px
+      
+
+    &__description
+      @extend .ut-first-letter-capitalized
+      color #666
+      font-weight 300
+
+
+
+  /*--------------------------------------------
+    Search interests
+  --------------------------------------------*/
+  &-steps-list-pri
+    vLine 10px
+
+    +b($steps-tablet-bp)
+      f-align flex-start space-between
+
+    &__unit
+      
+      +b($steps-tablet-bp)
+        f-gap()
+        f-grid 4
+
+
+
+  /*a*/&-step
+    display block
+    text-decoration: none
+    position relative 
+    z-index 1 //enable mask with z-index: -1
+    margin-x auto
+    padding 20px
+    vLine 15px
+    border-radius $radius
+    
+    //mask for better description visibility
+    &:before
+      pb mask
+      background-image linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%)
+      z-index: -1
+      border-radius $radius
+
+
+    .flexbox &
+      @extend .f-box
+      @extend .f-align--1-3
+      @extend .f-dir--col
+
+    +b-max($steps-tablet-bp)
+      size 300px 240px
+      margin-x auto
+
+    +b($steps-tablet-bp)
+      height 400px
+      
+
+    for $step in 1..3
+      &--{$step}
+        img "step-"+$step+"-desktop.png"
+
+
+    &__status
+      @extend .uv-btn
+      @extend .uv-btn--S
+      @extend .uv-btn--brand-c.is-inverted
+      @extend .uv-btn--no-clickable
+      @extend .uv-btn--no-full-on-mobile
+      title 10px $body-c 400
+      text-transform uppercase
+      letter-spacing 2px
+
+    
+    &__title
+      @extend .ut-first-letter-capitalized
+      title 24px $body-c
+        
+
+    &__description
+      @extend .ut-first-letter-capitalized
+      color $secondary-text-c
+      font-weight 300
+
+
 
 
   /*--------------------------------------------

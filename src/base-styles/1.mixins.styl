@@ -115,6 +115,16 @@ img($name, $position = '50% 50%', $repeat = no-repeat)
   background-repeat $repeat
   background-position unquote($position)
 
+img-responsive($name, $position = '50% 50%', $repeat = no-repeat)
+  background-repeat   $repeat
+  background-position unquote($position)
+  +xxs()
+    background-image url($img-path + $name + "-mobile.png")
+  +b($xs $md)
+    background-image url($img-path + $name + "-tablet.png")
+  +b($md)
+    background-image url($img-path + $name + "-desktop.png")
+
 
 /*--------------------------------------
   Color helpers
@@ -128,12 +138,12 @@ placeholder($color){
 }
 
 
-brand($size, $color = $brand-c)
-  font $size $brand-f
-  color: $color
+//brand($size, $color = $brand-c)
+//  font $size $brand-f
+//  color: $color
 
-title($size, $color = $title-c)
-  font $size $title-f
+title($size, $color = $title-c, $fw = 700)
+  font $fw $size $title-f
   color: $color
 
 /*--------------------------------------
@@ -240,8 +250,6 @@ container($width = $base-max-w)
   padding-x 10px
 
 
-
-
 /*--------------------------------------
   Mobile first helpers
 --------------------------------------*/
@@ -297,6 +305,7 @@ make-full-on-mobile()
     max-width: $xs
     if arguments
       {block}
+      
 
 
 

@@ -3,28 +3,49 @@ This file has excluded from build system in Gruntfile.coffee
 Keep in mind this, if you'll rename it.
 */
 
-@font-face {
+@font-face 
   font-family: "urlaubsgluck-icon-font";
   src: url('../fonts/urlaubsgluck-icon-font.eot');
   src: url('../fonts/urlaubsgluck-icon-font.eot?#iefix') format('eot'),
        url('../fonts/urlaubsgluck-icon-font.woff') format('woff'),
        url('../fonts/urlaubsgluck-icon-font.ttf') format('truetype'),
        url('../fonts/urlaubsgluck-icon-font.svg#urlaubsgluck-icon-font') format('svg');
-}
-
-.uv-icon:before {
-  font-family: "urlaubsgluck-icon-font";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  text-decoration: none;
-  text-transform: none;
-}
 
 
-.uv-icon--test-icon:before {
-  @extend .uv-icon:before
-  content: "\E001";
-}
+.uv-icon
+  &:before
+    font-family: "urlaubsgluck-icon-font";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: none;
+
+
+
+.icon_arrow-lt-1 
+  &:before
+    content: "\E001";
+
+
+.icon_bottle-1 
+  &:before
+    content: "\E002";
+
+
+.icon_cup-1 
+  &:before
+    content: "\E003";
+
+
+.icon_plane-1 
+  &:before
+    content: "\E004";
+
+
+.icon_tv-1 
+  &:before
+    content: "\E005";
+

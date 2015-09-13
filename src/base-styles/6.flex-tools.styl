@@ -9,6 +9,24 @@ Table of content:
 */
 
 /*----------------------------
+  Mixins
+----------------------------*/
+f-align()
+  display flex
+  align-items arguments[0]
+  justify-content arguments[1]
+
+f-gap($multi = 1, $gap = $grid-gap)
+  margin-right ($gap * $multi)
+  margin-left  ($gap * $multi)
+  
+f-grid($mod = $grid-gap)
+  $w = ($mod / $grid-col * 100%)
+  flex-basis $w
+
+
+
+/*----------------------------
   Init classes
 ----------------------------*/
 .f-box
@@ -43,16 +61,12 @@ $gap-sizes = S .5
 
 .f-gap
   
-  gap($multi = 1, $gap = $grid-gap)
-    margin-right ($gap * $multi)
-    margin-left  ($gap * $multi)
-
   for $each in $gap-sizes
     &--{$each[0]}
-      gap ($each[1] / -2)  // negative 1/2 of gap to compensate positive f-grid gaps
+      f-gap ($each[1] / -2)  // negative 1/2 of gap to compensate positive f-grid gaps
     
       & > *
-        gap ($each[1] / 2)
+        f-gap ($each[1] / 2)
 
 
 
