@@ -22,6 +22,7 @@ class Slider
 StepsList = new Slider(
   $('.prj-steps-list-sec')
   {
+    useCSS: off
     pager: off
     nextText: ""
     prevText: ""

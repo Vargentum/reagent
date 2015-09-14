@@ -250,6 +250,22 @@ container($width = $base-max-w)
   padding-x 10px
 
 
+
+hover-image-animation()
+  overflow hidden
+  &:before
+    trans()
+    transform: translate3d(0,0,0) scale(1);
+    filter blur(0)
+
+  &:hover:before
+    trans()
+    transform: translate3d(-15px,0,0) scale(1.20);
+    filter blur(2px)
+
+
+
+
 /*--------------------------------------
   Mobile first helpers
 --------------------------------------*/

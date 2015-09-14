@@ -195,7 +195,7 @@ $steps-tablet-bp =  700px
 
     &__caption
       display block
-      title 10px $secodary-text-c
+      title 10px #999
       text-transform uppercase
       letter-spacing 1px
       text-align: center
@@ -221,11 +221,13 @@ $steps-tablet-bp =  700px
   --------------------------------------------*/
   &-first-screen
     @extend .uv-sec
-    container 1440px
+    container 100%
     img-responsive "first-screen"
+    background-size cover
 
     
     &__content
+      container()
       height 540px
       padding-x 20px
       text-align: center
@@ -414,6 +416,7 @@ $steps-tablet-bp =  700px
     border-radius $radius
     background-color $base-font-c
     text-align: center
+    hover-image-animation()
 
     .flexbox &
       @extend .f-box
@@ -436,7 +439,7 @@ $steps-tablet-bp =  700px
       pb mask
       opacity .7
       z-index: -1
-      
+
 
 
     &__title
@@ -454,6 +457,7 @@ $steps-tablet-bp =  700px
       f-align flex-start space-between
 
     &__unit
+      position relative
       
       +b($steps-tablet-bp)
         f-gap()
@@ -461,22 +465,72 @@ $steps-tablet-bp =  700px
 
 
 
+    -control()
+      @extend .ut-hide-xs
+      @extend .uv-icon
+      @extend .icon_arrow-rt-1
+      font-size 55px
+      size 30px @font-size
+      line-height: @font-size
+      text-align: center
+      color alpha($body-c, .5)
+      trans unquote("opacity, color")
+      text-decoration: none
+      
+      &:hover
+        color $body-c
+
+      &:focus
+        outline none
+        
+      +b($sm)
+        absolute top 40px right 20px
+
+      +b($md)
+        top 150px
+
+      if arguments[0] is prev
+        transform rotate(180deg)
+        +b($sm)
+          left 20px
+          
+    
+      .disabled
+        opacity 0
+
+          
+    /*a*/.bx-prev
+      -control prev
+
+    /*a*/.bx-next
+      -control next
+
+
+
+
   /*a*/&-step
     @extend .ut-block-link
-    position relative 
+    position relative
     z-index 1 //enable mask with z-index: -1
     margin-x auto
     padding 20px
     vLine 15px
     border-radius $radius
+    background-color #ff8523
+    hover-image-animation()
     
-    //mask for better description visibility
+    //image
     &:before
-      pb mask
-      background-image linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%)
-      z-index: -1
+      pb mask      
+      z-index: -2
       border-radius $radius
-
+      opacity .9
+      
+    //mask for better description visibility
+    &:after
+      pb mask
+      z-index: -1
+      background-image linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%)
 
     .flexbox &
       @extend .f-box
@@ -492,7 +546,7 @@ $steps-tablet-bp =  700px
       
 
     for $step in 1..3
-      &--{$step}
+      &--{$step}:before
         img "step-"+$step+"-desktop.png"
 
 

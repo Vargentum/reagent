@@ -206,7 +206,7 @@ gulp.task 'watch', ->
     cb()
   )
   $.watch(path.iconFont.src, $.batch (cb) ->
-    gulp.start('iconFont')
+    gulp.start('icon-font')
     cb()
   )
 
