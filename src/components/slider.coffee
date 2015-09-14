@@ -19,7 +19,7 @@ class Slider
     #   @reloadAtBp()
 
 
-stepsSlider = new Slider(
+StepsList = new Slider(
   $('.prj-steps-list-sec')
   {
     pager: off

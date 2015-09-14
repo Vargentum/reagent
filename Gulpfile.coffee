@@ -65,6 +65,7 @@ gulp.task 'icon-font', ->
       normalize: on
     ))
     .pipe(gulp.dest(path.iconFont.dest))
+    .pipe($.livereload())
 
 
 
@@ -108,6 +109,7 @@ gulp.task 'img-minify', ->
       use: [pngquant()]
     ))
     .pipe(gulp.dest(path.img.dest))
+    .pipe($.livereload())
 
 
 gulp.task 'sprites', ->
@@ -135,11 +137,13 @@ gulp.task 'plugins', ->
   gulp.src(path.scripts.plugins)
     .pipe($.concat(pkg.name + '-plugins.js'))
     .pipe(gulp.dest(path.scripts.dest))
+    .pipe($.livereload())
     .pipe($.uglify())
     .pipe($.rename(
       suffix: '.min'
     ))
     .pipe(gulp.dest(path.scripts.dest))
+    .pipe($.livereload())
 
 
 gulp.task 'coffee', ->
@@ -148,11 +152,13 @@ gulp.task 'coffee', ->
     .pipe($.concat(pkg.name + '-scripts.coffee'))
     .pipe($.coffee())
     .pipe(gulp.dest(path.scripts.dest))
+    .pipe($.livereload())
     .pipe($.uglify())
     .pipe($.rename(
       suffix: '.min'
     ))
     .pipe(gulp.dest(path.scripts.dest))
+    .pipe($.livereload())
 
 
 

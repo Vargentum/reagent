@@ -279,7 +279,6 @@ $steps-tablet-bp =  700px
     Partners
   --------------------------------------------*/
   &-partners-list
-    vLine 30px
       
     +b($sm)
       .flexbox &
@@ -293,6 +292,7 @@ $steps-tablet-bp =  700px
     &__unit
       width 200px
       margin-x auto
+      margin-bottom 30px
 
       +b($sm)
         width: 50%
@@ -303,6 +303,8 @@ $steps-tablet-bp =  700px
         
 
     &__load-more
+      @extend .uv-btn
+      @extend .uv-btn--brand-c
       
 
     &__load-more-wrapper
@@ -366,6 +368,79 @@ $steps-tablet-bp =  700px
 
 
   /*--------------------------------------------
+    Categories
+  --------------------------------------------*/
+  $categoriesLength = 7
+
+  &-categories-list
+    vLine 10px
+    margin-x auto
+    
+    +b($sm)
+      vLine 20px
+
+    &__unit
+      width: (100% / 3)%
+      size 300px 120px
+      margin-x auto
+
+
+      +b($sm)
+        size 235px 310px
+
+        &--L
+          width: 495px
+      
+      
+      +b($lg)
+        width 300px
+
+        &--L
+          width 620px    
+
+
+
+  /*a*/&-category
+    @extend .ut-block-link
+    height: inherit
+    margin-x auto
+    position relative
+    z-index: 1
+    padding-x 25px
+    border-radius $radius
+    background-color $base-font-c
+    text-align: center
+
+    .flexbox &
+      @extend .f-box
+      @extend .f-align--2-2
+      
+    .no-flexbox &
+      display block
+    
+
+    for $category in 0..$categoriesLength
+      &--{$category}:before
+        +xs()
+          img "category-"+$category+"-mobile.png"
+        +b($sm)
+          img "category-"+$category+"-desktop.png"
+
+
+    //background image
+    &:before
+      pb mask
+      opacity .7
+      z-index: -1
+      
+
+
+    &__title
+      title 22px $body-c
+
+
+
+  /*--------------------------------------------
     Search interests
   --------------------------------------------*/
   &-steps-list-pri
@@ -383,8 +458,7 @@ $steps-tablet-bp =  700px
 
 
   /*a*/&-step
-    display block
-    text-decoration: none
+    @extend .ut-block-link
     position relative 
     z-index 1 //enable mask with z-index: -1
     margin-x auto

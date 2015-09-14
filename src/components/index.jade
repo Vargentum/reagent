@@ -73,26 +73,33 @@ html.flexbox.no-js(lang='en')
             li.prj-partners-list__unit
               article.prj-partner
                 aside.prj-partner__photo
-                  span(class="prj-partner__mark icon_#{partners[counter].icon_type}",
+                  span(class="prj-partner__mark icon_#{partners[counter].icon_type}"
                        style="background-color: #{partners[counter].icon_color}")
                   img(src="./assets/img/partner-#{counter}.png")
                 h3.prj-partner__title= partners[counter].full_name
                 p.prj-partner__description= partners[counter].description
 
       footer.prj-partners-list__load-more-wrapper
-        button..prj-partners-list__load-more See other partners
+        button.prj-partners-list__load-more See other partners
     
 
     section.uv-sec
       header.uv-sec__header
         h2.uv-sec__title Discover holiday activity ideas
 
+
       div.uv-sec__main
-        ul.prj-ideas-list
-          li.prj-ideas-list__unit
-            article.prj-idea(style="background-image: url()")
-              h3.prj-idea__title
-                a.prj-idea__title-link Sport and Activity
+        ul.prj-categories-list
+          - var categories = [{name: "Sport and Activity", large: false}, {name: "Wellnes and Health", large: false}, {name: "Extreme Sports and Expeditions", large: false}, {name: "Games", large: false}, {name: "Culture and Education", large: true}, {name: "Relaxation", large: true}, {name: "Travelling", large: false}]
+          each category, index in categories
+            - var largeCls = category.large == true ? 'prj-categories-list__unit--L' : '';
+            li(class="prj-categories-list__unit #{largeCls}")
+              a(class="prj-category prj-category--#{(index + 1)}" href="#")
+                h3.prj-category__title= category.name
+
+                  
+
+
 
 
 
