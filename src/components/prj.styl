@@ -221,6 +221,7 @@ $steps-tablet-bp =  700px
   --------------------------------------------*/
   &-first-screen
     @extend .uv-sec
+    container 1440px
     img-responsive "first-screen"
 
     
@@ -271,6 +272,9 @@ $steps-tablet-bp =  700px
       @extend .uv-btn
       @extend .uv-btn--brand-c
       @extend .uv-btn--brand-c.is-inverted
+
+      &:hover
+        color $body-c
         
     
 
@@ -495,13 +499,12 @@ $steps-tablet-bp =  700px
     &__status
       @extend .uv-btn
       @extend .uv-btn--S
-      @extend .uv-btn--brand-c.is-inverted
       @extend .uv-btn--no-clickable
-      @extend .uv-btn--no-full-on-mobile
-      title 10px $body-c 400
+      background-color $brand-c
       text-transform uppercase
       letter-spacing 2px
-
+      title 10px $body-c 400
+      
     
     &__title
       @extend .ut-first-letter-capitalized
