@@ -125,6 +125,9 @@ img-responsive($name, $position = '50% 50%', $repeat = no-repeat)
   +b($md)
     background-image url($img-path + $name + "-desktop.png")
 
+  .ie8 &
+    background-image url($img-path + $name + "-desktop.png")
+
 
 /*--------------------------------------
   Color helpers
@@ -251,19 +254,23 @@ container($width = $base-max-w)
 
 
 
-hover-image-animation()
+hover-image-animation($shift = -15px)
   overflow hidden
   &:before
     trans()
-    transform: translate3d(0,0,0) scale(1);
-    filter blur(0)
+    .csstransforms3d & //if supports 3d then have enough power to handle blur filter
+      transform: translate3d(0,0,0) scale(1);
+      filter blur(0)
 
   &:hover:before
     trans()
-    transform: translate3d(-15px,0,0) scale(1.20);
-    filter blur(2px)
+    .csstransforms3d &
+      transform: translate3d($shift,0,0) scale(1.20);
+      filter blur(2px)
 
-
+  
+  .no-csstransitions &:hover &__title
+    text-decoration: underline
 
 
 /*--------------------------------------

@@ -55,9 +55,10 @@ html.flexbox.no-js(lang='en')
                 while secCount < 3
                   - secCount++;
                   li.prj-steps-list-sec__unit
-                    a(class="prj-step prj-step--#{priCount}" href="#")
+                    - var title = steps[priCount * secCount].title
+                    a(class="prj-step prj-step--#{priCount}" href="#" title="#{title}")
                       span.prj-step__status Step #{priCount}
-                      h3.prj-step__title= steps[priCount * secCount].title
+                      h3.prj-step__title= title
                       p.prj-step__description= steps[priCount * secCount].description
 
 
@@ -95,7 +96,7 @@ html.flexbox.no-js(lang='en')
           each category, index in categories
             - var largeCls = category.large == true ? 'prj-categories-list__unit--L' : '';
             li(class="prj-categories-list__unit #{largeCls}")
-              a(class="prj-category prj-category--#{(index + 1)}" href="#")
+              a(class="prj-category prj-category--#{(index + 1)}" href="#" title="#{category.name}")
                 h3.prj-category__title= category.name
 
                   

@@ -16,7 +16,7 @@ $btn-inverted-cls         = unquote('.is-inverted')
 
 
 /*input*/
-$input-placeholder-c      = #999 
+$input-placeholder-c      = #999
 $input-h                  = 40px
 $input-padding-x          = 15px
 $input-radius             = $radius
@@ -28,7 +28,7 @@ $input-focus-shadow       = 0 0 5px 0 $brand-c
 /*sec*/
 $sec-gap                  = 40px
 $sec-gap-nonMobile        = 100px
-     
+
 $sec-hdr-gap              = 15px
 $sec-hdr-gap-nonMobile    = 35px
 
@@ -42,7 +42,7 @@ $sec-title-fw             = 700
   /*---------------------------------
     Buttons
   ----------------------------------*/
-  
+
   &-btn
     pressable()
     height:       $btn-h-def
@@ -53,7 +53,7 @@ $sec-title-fw             = 700
     color         $btn-fc
     trans unquote('background-color, border-color, color')
     cursor pointer
-    
+
     +make-full-on-mobile()
       text-align: center
 
@@ -70,12 +70,12 @@ $sec-title-fw             = 700
         @extend .f-box
         @extend .f-align--2-2
       .no-flexbox &
-        line-height $btn-h-def
+        display inline-block
+        // line-height $btn-h-def
 
-    
     &:focus
       outline 1px dotted $brand-c
-    
+
 
     //keep button fuctionality without any styles
     &--no-styles
@@ -88,16 +88,19 @@ $sec-title-fw             = 700
     &--no-clickable
       pressable 0
       cursor default
+      
+      &:focus
+        outline none
 
 
     /*Sizes*/
     for $size in S M L
       &--{$size}
         height lookup('$btn-h-' + $size)
-        padding-x (@height / 2) 
+        padding-x (@height / 2)
         .no-flexbox &
           line-height lookup('$btn-h-' + $size)
-    
+
     /*Pallettes*/
     for $clr in body-c brand-c error-c warning-c success-c
       &--{$clr}
@@ -106,22 +109,22 @@ $sec-title-fw             = 700
 
         color $pri-c
         border 2px solid $pri-c
-        
+
         &:hover
         &{$btn-active-cls}
           background-color $pri-c
           color $sec-c
-        
+
 
         &{$btn-inverted-cls}
           background-color $pri-c
           color $sec-c
-          
+
           &:hover
           &{$btn-active-cls}
             background-color transparent
             color $pri-c
-        
+
 
     &--body-c
 
@@ -131,18 +134,18 @@ $sec-title-fw             = 700
 
       &{$btn-inverted-cls}
         color $brand-c
-          
+
         &:hover
         &{$btn-active-cls}
           color $body-c
 
-        
 
 
-  
+
+
   /*---------------------------------
     input
-  ----------------------------------*/        
+  ----------------------------------*/
   &-input
     placeholder   $input-placeholder-c
     height        $input-h
@@ -155,13 +158,13 @@ $sec-title-fw             = 700
     make-full-on-mobile()
 
 
-    
+
     &:focus
       box-shadow  $input-focus-shadow
-      outline none    
+      outline none
 
 
-  
+
   /*---------------------------------
     Sections
   ----------------------------------*/
@@ -171,7 +174,7 @@ $sec-title-fw             = 700
     +b($sm)
       margin-bottom $sec-gap-nonMobile
 
-    
+
     &__header
       margin-bottom $sec-hdr-gap
       +b($sm)
@@ -182,4 +185,4 @@ $sec-title-fw             = 700
       font $sec-title-fz $title-f
       font-weight $sec-title-fw
       text-align: center
-      
+

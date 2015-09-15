@@ -221,8 +221,8 @@ gulp.task 'build', (callback) ->
       'sprites'
       'plugins'
       'coffee'
+      'jade'
     ]
-    'jade'
     'styles'
     callback
   )

@@ -3,15 +3,15 @@ $steps-tablet-bp =  700px
 
 
 .prj
-  
-  
+
+
   &-body
     pass()
-    
 
-  
+
+
   /*--------------------------------------------
-    Header    
+    Header
   --------------------------------------------*/
   &-header
     absolute left right top
@@ -33,20 +33,20 @@ $steps-tablet-bp =  700px
 
 
 
-  
+
   /*--------------------------------------------
-    Logo (header & footer)    
+    Logo (header & footer)
   --------------------------------------------*/
   &-logo
-    title 20px 
+    title 20px
     text-transform: uppercase
     letter-spacing 2px
-    
+
      /*Pallettes*/
     for clr in brand-c body-c
       &--{clr}
         color lookup('$' + clr)
-    
+
     &--header-mobile
       @extend .prj-logo--body-c
       @extend .ut-show-xs
@@ -60,7 +60,7 @@ $steps-tablet-bp =  700px
     &--footer
       @extend .prj-logo--brand-c
       font-size 16px
-    
+
 
   /*--------------------------------------------
     User actions (header)
@@ -72,20 +72,20 @@ $steps-tablet-bp =  700px
       @extend .f-box
       @extend .f-align--2-2
       @extend .f-gap--L
-      
+
     .no-flexbox &
-      hLine middle 
+      hLine middle
       &>*
         margin-x 10px
 
-  
+
 
     &__login
       @extend .uv-btn
       @extend .uv-btn--no-full-on-mobile
       button&
         @extend .uv-btn--no-styles
-        
+
       &:hover
         text-decoration: underline
 
@@ -95,10 +95,10 @@ $steps-tablet-bp =  700px
       @extend .uv-btn--body-c
       @extend .uv-btn--no-full-on-mobile
 
-      
 
 
-  
+
+
 
 
   /*--------------------------------------------
@@ -106,13 +106,18 @@ $steps-tablet-bp =  700px
   --------------------------------------------*/
   &-footer
     border-top 4px solid $brand-c
-    
+
 
     &__content  //desktop first
       container()
-      @extend .f-box
-      @extend .f-align--1-13
-  
+      
+      .flexbox &
+        @extend .f-box
+        @extend .f-align--1-13
+        
+      .no-flexbox &
+        cf()
+
       +b-max($footer-mobile-bp)
         display block
 
@@ -120,20 +125,20 @@ $steps-tablet-bp =  700px
 
     &__column //desktop first
       margin-y 40px
-      
+
       &--logo
         transform translateY(-10%) //ctr with link-titles
         .flexbox &
           @extend .f-grid--3
         .no-flexbox &
-          col 3
-      
+          col(1/4)
+
 
       &--links
         @extend .f-grid--2
         .no-flexbox &
-          col 2
-      
+          col(1/6)
+
 
       &--copyright
         transform translateY(-10%) //ctr with link-titles@extend .f-align--3-1
@@ -143,14 +148,16 @@ $steps-tablet-bp =  700px
           @extend .f-box
           @extend .f-dir--col
         .no-flexbox &
-          col 2
+          col(1/6)
 
 
       &--empty
         @extend .ut-hide-xs
         @extend .ut-hide-sm
-        @extend .f-fill
-
+        .flexbox &
+          @extend .f-fill
+        .no-flexbox &
+          col(1/6)
 
 
       +b-max($footer-mobile-bp)
@@ -166,32 +173,32 @@ $steps-tablet-bp =  700px
 
 
   /*--------------------------------------------
-    Useful links (footer)    
+    Useful links (footer)
   --------------------------------------------*/
   &-useful-links
-    
+
     &__title
       title 14px
       margin-bottom 10px
 
     &__list
       vLine 5px
-      
+
     &__list-unit
       pass()
-    
+
 
   &-useful-link
     color #666
     font-size 14px
     font-weight 300
-        
+
 
 
   /*--------------------------------------------
-    Copyright (footer)    
+    Copyright (footer)
   --------------------------------------------*/
-  &-copyright    
+  &-copyright
 
     &__caption
       display block
@@ -199,10 +206,10 @@ $steps-tablet-bp =  700px
       text-transform uppercase
       letter-spacing 1px
       text-align: center
-      
+
       +b($footer-mobile-bp)
         text-align: right
-      
+
 
     &__logo
       hide-text()
@@ -217,34 +224,42 @@ $steps-tablet-bp =  700px
 
 
   /*--------------------------------------------
-    First screen    
+    First screen
   --------------------------------------------*/
   &-first-screen
     @extend .uv-sec
     container 100%
     img-responsive "first-screen"
+    text-align: center
     background-size cover
-
     
+    .no-flexbox &
+      vAlign middle
+      height 540px
+
+      +b($sm + 20)
+        height 700px
+
+
     &__content
       container()
-      height 540px
       padding-x 20px
-      text-align: center
       color $body-c
-     
+
       .flexbox &
         @extend .f-box
         @extend .f-align--2-2
         @extend .f-dir--col
-      .no-flexbox &
-        vAlign middle
-      
+        height 540px
+
+        +b($sm + 20)
+          height 700px
+
       +b($sm + 20)
-        size: $sm 700px
+        width: $sm
         margin-x auto
         padding-x 0
-        
+
 
 
     &__title
@@ -252,7 +267,7 @@ $steps-tablet-bp =  700px
       margin-bottom 15px
       font 700 30px $title-f
       apple-font-size 29px
-      
+
 
       +b($sm)
         margin-bottom 30px
@@ -265,7 +280,7 @@ $steps-tablet-bp =  700px
       font-weight 300
       margin-bottom 20px
       padding-x 25px // right phrase breaking
-      
+
       +b($sm)
         font-size: 24px
         margin-bottom 40px
@@ -277,23 +292,23 @@ $steps-tablet-bp =  700px
 
       &:hover
         color $body-c
-        
-    
+
+
 
 
   /*--------------------------------------------
     Partners
   --------------------------------------------*/
   &-partners-list
-      
+
     +b($sm)
       .flexbox &
         display flex
         flex-wrap wrap
-        
+
       .no-flexbox &
         hLine top
-    
+
 
     &__unit
       width 200px
@@ -303,43 +318,43 @@ $steps-tablet-bp =  700px
       +b($sm)
         width: 50%
         padding-x 10px
-        
+
       +b($md)
         width: 25%
-        
+
 
     &__load-more
       @extend .uv-btn
       @extend .uv-btn--brand-c
-      
+
 
     &__load-more-wrapper
       .flexbox &
         @extend .f-box
         @extend .f-align--2-2
-        
+
       .no-flexbox &
         hLine()
         text-align: center
-        
-        
+
+
 
 
   &-partner
     text-align: center
 
-    
+
     &__photo
       margin-x auto
       margin-bottom 20px
       size 120px
       border-radius 50%
       position relative
-      
+
       img
         display block
         size 100%
-      
+
 
     &__mark
       $border-w = 4px
@@ -354,17 +369,17 @@ $steps-tablet-bp =  700px
       color $body-c
 
       .flexbox &
-        @extend .f-box      
+        @extend .f-box
         @extend .f-align--2-2
-        
+
       .no-flexbox &
-        line-height $size   
+        line-height $size
 
 
     &__title
       title 14px
       margin-bottom 10px
-      
+
 
     &__description
       @extend .ut-first-letter-capitalized
@@ -376,55 +391,76 @@ $steps-tablet-bp =  700px
   /*--------------------------------------------
     Categories
   --------------------------------------------*/
-  $categoriesLength = 7
+  $categoriesLength       = 7
+  $category-item-h-mobile = 120px
+  $category-item-h        = 310px
+
 
   &-categories-list
     vLine 10px
     margin-x auto
-    
+
     +b($sm)
       vLine 20px
 
     &__unit
       width: (100% / 3)%
-      size 300px 120px
+      size 300px $category-item-h-mobile
       margin-x auto
 
 
       +b($sm)
-        size 235px 310px
+        size 235px $category-item-h
 
         &--L
           width: 495px
-      
-      
+
+
       +b($lg)
         width 300px
 
         &--L
-          width 620px    
+          width 620px
 
 
 
   /*a*/&-category
+    $gap-x = 25px
     @extend .ut-block-link
     height: inherit
     margin-x auto
     position relative
     z-index: 1
-    padding-x 25px
+    padding-x $gap-x
     border-radius $radius
     background-color $base-font-c
     text-align: center
     hover-image-animation()
 
+    //background image
+    &:before
+      pb mask
+      opacity .7
+      z-index: -1
+
+
     .flexbox &
       @extend .f-box
       @extend .f-align--2-2
-      
+
     .no-flexbox &
       display block
-    
+
+    .no-flexbox.csstransforms &
+      &__title
+        ctr y
+        text-align: center
+        width 100%
+        margin-x -($gap-x)
+
+    .no-flexbox.no-csstransforms &
+      padding-top 25px
+
 
     for $category in 0..$categoriesLength
       &--{$category}:before
@@ -432,13 +468,6 @@ $steps-tablet-bp =  700px
           img "category-"+$category+"-mobile.png"
         +b($sm)
           img "category-"+$category+"-desktop.png"
-
-
-    //background image
-    &:before
-      pb mask
-      opacity .7
-      z-index: -1
 
 
 
@@ -454,15 +483,13 @@ $steps-tablet-bp =  700px
     vLine 10px
 
     +b($steps-tablet-bp)
-      f-align flex-start space-between
+      cf()
 
     &__unit
       position relative
-      
-      +b($steps-tablet-bp)
-        f-gap()
-        f-grid 4
 
+      +b($steps-tablet-bp)
+        col(1/3)
 
 
     -control()
@@ -476,13 +503,13 @@ $steps-tablet-bp =  700px
       color alpha($body-c, .5)
       trans unquote("opacity, color")
       text-decoration: none
-      
+
       &:hover
         color $body-c
 
       &:focus
         outline none
-        
+
       +b($sm)
         absolute top 40px right 20px
 
@@ -493,12 +520,20 @@ $steps-tablet-bp =  700px
         transform rotate(180deg)
         +b($sm)
           left 20px
-          
-    
+
       .disabled
         opacity 0
+        
+      .ie9 &
+      .ie8 &
+        z-index: 1
+        top auto
+        bottom 40px
+        
+        
+        
 
-          
+
     /*a*/.bx-prev
       -control prev
 
@@ -518,19 +553,23 @@ $steps-tablet-bp =  700px
     border-radius $radius
     background-color #ff8523
     hover-image-animation()
-    
+
     //image
     &:before
-      pb mask      
+      pb mask
       z-index: -2
       border-radius $radius
       opacity .9
-      
+
     //mask for better description visibility
     &:after
       pb mask
       z-index: -1
-      background-image linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%)
+      .cssgradients &
+        background-image linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%)
+
+      .no-cssgradients &
+        background-color alpha(#000, .4)
 
     .flexbox &
       @extend .f-box
@@ -543,27 +582,28 @@ $steps-tablet-bp =  700px
 
     +b($steps-tablet-bp)
       height 400px
-      
+
 
     for $step in 1..3
       &--{$step}:before
-        img "step-"+$step+"-desktop.png"
+        img "step-"+$step+".png"
 
 
     &__status
       @extend .uv-btn
       @extend .uv-btn--S
       @extend .uv-btn--no-clickable
+      width: auto
       background-color $brand-c
       text-transform uppercase
       letter-spacing 2px
       title 10px $body-c 400
-      
-    
+
+
     &__title
       @extend .ut-first-letter-capitalized
       title 24px $body-c
-        
+
 
     &__description
       @extend .ut-first-letter-capitalized
@@ -572,21 +612,20 @@ $steps-tablet-bp =  700px
 
 
 
-
   /*--------------------------------------------
     Search interests
   --------------------------------------------*/
   &-search-interests
-    
+
     &__title
       text-align: center
       font-size 18px
       font-weight 300
       margin-bottom: 10px
-      
+
       +b($sm)
         margin-bottom 35px
-      
+
 
     &__form
       //desktop first in reason of cant extend inside media mixin
@@ -594,7 +633,7 @@ $steps-tablet-bp =  700px
         @extend .f-box
         @extend .f-align--2-2
         @extend .f-gap--M
-        
+
       .no-flexbox &
         hLine middle 10px
         text-align: center
@@ -602,9 +641,9 @@ $steps-tablet-bp =  700px
       +xs()
         .flexbox &
           flex-direction column
-          
+
         .no-flexbox &
-          vLine 10px      
+          vLine 10px
 
 
     &__input
@@ -615,7 +654,7 @@ $steps-tablet-bp =  700px
 
       +b($sm)
         width 240px
-      
+
 
     &__submit
       @extend .uv-btn
