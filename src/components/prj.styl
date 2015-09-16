@@ -110,7 +110,7 @@ $steps-tablet-bp =  700px
 
     &__content  //desktop first
       container()
-      
+
       .flexbox &
         @extend .f-box
         @extend .f-align--1-13
@@ -119,7 +119,9 @@ $steps-tablet-bp =  700px
         cf()
 
       +b-max($footer-mobile-bp)
-        display block
+        .flexbox &
+        .no-flexbox &
+          display block
 
 
 
@@ -639,6 +641,8 @@ $steps-tablet-bp =  700px
         text-align: center
 
       +xs()
+        padding-x 10px
+        
         .flexbox &
           flex-direction column
 

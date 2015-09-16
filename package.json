@@ -2,7 +2,7 @@
   "name": "urlaubsgluck",
   "title": "Project for start stage of UA Web Challenge VIII",
   "version": "0.0.1",
-  "author": "Vladislav Serebriakov",
+  "author": "",
   "devDependencies": {
     "coffee-script": "^1.9.1",
     "del": "^1.1.1",
